@@ -17,6 +17,7 @@
 		"react-dom": "^16.13.1",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.3",
+		"remeda": "0.0.23",
 		"source-map-explorer": "^2.5.0",
 		"typescript": "^3.7.5"
 	},
