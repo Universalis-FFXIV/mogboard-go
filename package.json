@@ -14,11 +14,13 @@
 		"highcharts-react-official": "^3.0.0",
 		"node-sass": "^4.14.1",
 		"react": "^16.13.1",
+		"react-cookie": "^4.0.3",
 		"react-dom": "^16.13.1",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.3",
 		"remeda": "0.0.23",
 		"source-map-explorer": "^2.5.0",
+		"typed-rest-client": "^1.7.3",
 		"typescript": "^3.7.5"
 	},
 	"devDependencies": {
