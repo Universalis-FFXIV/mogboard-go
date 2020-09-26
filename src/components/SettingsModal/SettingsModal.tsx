@@ -9,9 +9,9 @@ import { YesNoDropDown } from "../YesNoDropDown";
 import { LangDropDown } from "../LangDropDown";
 import { ServerDropDown } from "../ServerDropDown";
 
-export function SettingsModal() {
-	const [modalOpen, setModelOpen] = useState(true);
-	const closeModal = () => setModelOpen(false);
+export function SettingsModal(props: SettingsModalProps) {
+	const [modalOpen, setModalOpen] = useState(props.open != null && props.open);
+	const closeModal = () => setModalOpen(false);
 
 	const [settings, saveSettings] = useSettings();
 
@@ -103,4 +103,8 @@ export function SettingsModal() {
 			</button>
 		</Modal>
 	);
+}
+
+export interface SettingsModalProps {
+	open?: boolean;
 }
