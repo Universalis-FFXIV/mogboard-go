@@ -1,11 +1,111 @@
-body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+* {
+	box-sizing: border-box;
 }
 
+html {
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	text-shadow: 0 1px 2px #000;
+	background-color: #1c1c1c;
+	color: #fff;
+}
+
+body {
+	overflow-y: scroll;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 15px;
+	font-weight: 300;
+}
+
+h1 {
+	font-size: 42px;
+}
+
+h2 {
+	font-size: 38px;
+}
+
+h3 {
+	font-size: 34px;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+h5 {
+	font-size: 26px;
+}
+
+h6 {
+	font-size: 22px;
+}
+
+p {
+	line-height: 22px;
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+a {
+	color: rgb(134, 162, 255);
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	color: #9ab9fa;
+	cursor: pointer;
+}
+
+strong {
+	font-weight: 600;
+}
+
+em {
+	font-style: italic;
+}
+
+pre,
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+	font-family: "Roboto Mono", monospace;
+}
+pre.inline,
+code.inline {
+	padding: 5px 10px;
+	background-color: #181818;
+	border-radius: 100px;
+}
+pre.box,
+code.box {
+	color: #c2c2c2;
+	display: block;
+	background-color: #111;
+	padding: 6px 10px;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	line-height: 20px;
+}
+pre.box em,
+code.box em {
+	color: #fff99d;
+}
+pre span,
+code span {
+	color: #58b4ff;
+}
+pre em,
+code em {
+	color: #798ebb;
+	font-style: normal;
+}
+pre strong,
+code strong {
+	color: #2cdd8f;
 }

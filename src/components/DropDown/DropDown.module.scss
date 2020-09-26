@@ -1,0 +1,20 @@
+@import "../../styles/animations";
+@import "../../styles/forms";
+
+.dropDown {
+	height: $form-field-height;
+	line-height: $form-field-height;
+	background-color: #e6e6e6;
+	border: none;
+	font-size: 16px;
+	border-radius: 3px;
+	color: #333;
+	padding: 0 10px;
+	transition: $transition-time;
+	outline: none;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+	&:hover {
+		background-color: #fff;
+	}
+}
