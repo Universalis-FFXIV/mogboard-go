@@ -1,0 +1,170 @@
+@import "../../styles/animations";
+@import "../../styles/forms";
+
+.header {
+	width: 100%;
+	display: flex;
+}
+
+.header > div {
+	padding: 20px;
+}
+
+.header > div:first-of-type {
+	flex: 0 1 calc(100% - 400px);
+	display: flex;
+}
+
+.header > div:last-of-type {
+	display: flex;
+	flex: 0 1 400px;
+	text-align: right;
+	flex-direction: row;
+	justify-content: flex-end;
+
+	div {
+		flex: 0 1 auto;
+	}
+}
+
+.myAccount {
+	display: inline-block;
+
+	flex: 0 1 auto;
+	font-size: 18px;
+	font-weight: 400;
+
+	color: #888;
+	padding: 15px 20px 0 0;
+	transition: 150ms;
+
+	&:hover {
+		color: white;
+	}
+}
+
+.username {
+	display: inline-block;
+
+	flex: 0 1 auto;
+	font-size: 18px;
+	font-weight: 400;
+
+	color: #a7caff;
+	padding: 15px 10px 0 0;
+}
+
+.headerNav {
+	display: flex;
+	background: linear-gradient(to bottom, #363f51 0%, #323c47 100%);
+	position: relative;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px black;
+	overflow: hidden;
+	margin: 0 0 0 19px;
+	height: 46px;
+}
+
+.search {
+	height: 46px;
+	width: 400px;
+	line-height: 46px;
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: 17px;
+	padding: 0 16px;
+	transition: 150ms;
+	outline: none;
+	border-right: 1px solid black;
+	box-shadow: 1px 0 #444;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+
+	&:focus {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+}
+
+.searchLoading {
+	position: absolute;
+	left: 360px;
+	top: 10px;
+	height: 25px;
+	display: none;
+}
+
+.settingsButton {
+	height: $form-field-height;
+	border: none;
+	padding: 8px 2px 0 2px;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	margin: 0 10px;
+
+	span {
+		font-size: 32px;
+		color: #444;
+		transition: $transition-speed;
+
+		&:hover {
+			color: #888;
+		}
+	}
+}
+
+.marketBoardButton {
+	border-right: none;
+	box-shadow: none;
+
+	height: 46px;
+	line-height: 46px;
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: 17px;
+	padding: 0 16px;
+	transition: 150ms;
+	outline: none;
+
+	i {
+		font-size: 19px;
+		vertical-align: middle;
+		display: inline-table;
+		margin: 0 6px -3px 0;
+	}
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+
+	&:focus {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+}
+
+.homeButton {
+	color: white;
+	height: 50px;
+	display: inline-block;
+
+	img {
+		transition: 150ms;
+		margin: -15px 0 0 0;
+		-webkit-filter: grayscale(100%);
+		filter: grayscale(100%);
+		height: 64px;
+
+		&:hover {
+			filter: drop-shadow(3px 3px 3px rgba(255, 255, 255, 0.2));
+			opacity: 1;
+		}
+	}
+}

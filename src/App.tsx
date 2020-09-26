@@ -5,6 +5,7 @@ import { Home } from "./routes/Home";
 import { SettingsModal } from "./components/SettingsModal";
 import { Footer } from "./components/Footer";
 import { useSettings } from "./hooks/useSettings";
+import { Header } from "./components/Header";
 
 export function App() {
 	const [settings] = useSettings();
@@ -12,6 +13,7 @@ export function App() {
 
 	return (
 		<div>
+			<Header />
 			<SettingsModal />
 			<Switch>
 				<Route exact path="/" component={Home} />

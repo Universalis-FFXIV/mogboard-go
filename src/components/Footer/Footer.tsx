@@ -13,9 +13,9 @@ export function Footer() {
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 					<Link to="/docs">API Documentation</Link>
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-					<Link to="https://github.com/Universalis-FFXIV/Universalis">GitHub</Link>
+					<a href="https://github.com/Universalis-FFXIV/Universalis">GitHub</a>
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-					<Link to="https://discord.gg/JcMvMxD">Discord</Link>
+					<a href="https://discord.gg/JcMvMxD">Discord</a>
 				</div>
 				<div>FINAL FANTASY XIV © 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</div>
 			</small>

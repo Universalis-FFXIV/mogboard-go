@@ -36,12 +36,13 @@
 	"scripts": {
 		"preanalyze": "npm run build",
 		"analyze": "source-map-explorer 'build/static/js/*.js'",
-		"prestart": "genversion --es6 --semi src/version.js",
+		"prestart": "npm run genversion",
 		"start": "react-scripts start",
-		"prebuild": "genversion --es6 --semi src/version.js",
+		"prebuild": "npm run genversion",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"format": "prettier --write \"src/**/*.+(js|jsx|ts|tsx|json|css|scss|md)\""
+		"format": "prettier --write \"src/**/*.+(js|jsx|ts|tsx|json|css|scss|md)\"",
+		"genversion": "genversion --es6 --semi src/version.js"
 	},
 	"eslintConfig": {
 		"extends": [
