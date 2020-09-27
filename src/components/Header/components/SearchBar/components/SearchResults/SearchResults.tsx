@@ -10,14 +10,20 @@ export function SearchResults(props: SearchResultsProps) {
 		<div
 			className={styles.searchResultsContainer}
 			style={{
-				display: shouldShowResults(props.term) ? "block" : "none",
+				display: props.typing ? "block" : "none",
 			}}
 		>
 			<div className={styles.searchResults}>
 				<div className={styles.itemSearchHeader}>
-					<div>
-						Found {props.results.length} / {props.totalItems} for <strong>{props.term}</strong>
-					</div>
+					{(() => {
+						return props.headerTextOverride != null ? (
+							<div>{props.headerTextOverride}</div>
+						) : (
+							<div>
+								Found {props.results.length} / {props.totalItems} for <strong>{props.term}</strong>
+							</div>
+						);
+					})()}
 					<div></div>
 				</div>
 				<ScrollBar className={styles.itemSearchList}>
@@ -53,7 +59,7 @@ function SearchResult(props: {
 					src={`https://xivapi.com${props.icon}`}
 					height={40}
 					width={40}
-					placeholder={<img src="http://xivapi.com/mb/loading.svg" alt="" />}
+					placeholderSrc="http://xivapi.com/mb/loading.svg"
 				/>
 			</span>
 			<span className={styles.itemLevel}>{props.itemLevel}</span>
@@ -63,12 +69,10 @@ function SearchResult(props: {
 	);
 }
 
-function shouldShowResults(term: string) {
-	return term.length !== 0;
-}
-
 export interface SearchResultsProps {
 	results: SearchResultItem[];
 	totalItems: number;
 	term: string;
+	typing: boolean;
+	headerTextOverride?: string;
 }

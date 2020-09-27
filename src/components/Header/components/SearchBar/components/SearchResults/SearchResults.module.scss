@@ -8,6 +8,8 @@
 	z-index: 50;
 
 	.searchResults {
+		background: #363f51;
+		background: -webkit-linear-gradient(top, #363f51 0%, #323c47 100%);
 		background: linear-gradient(to bottom, #363f51 0%, #323c47 100%);
 		border-radius: 4px;
 		box-shadow: 0 1px 4px black;

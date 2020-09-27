@@ -7,7 +7,7 @@ export function Tooltip(props: TooltipProps) {
 	return (
 		<ReactTooltip
 			id={props.id}
-			place="bottom"
+			place={props.place}
 			type="dark"
 			effect="solid"
 			backgroundColor="#333"
@@ -21,4 +21,5 @@ export function Tooltip(props: TooltipProps) {
 export interface TooltipProps {
 	text: string;
 	id: string;
+	place: "top" | "right" | "bottom" | "left" | undefined;
 }

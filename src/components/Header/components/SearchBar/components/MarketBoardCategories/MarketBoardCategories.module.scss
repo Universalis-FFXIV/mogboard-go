@@ -1,0 +1,72 @@
+@import "../../../../../../styles/animations";
+@import "../../../../../../styles/colors";
+
+.marketBoardContainer {
+	position: absolute;
+	top: 60px;
+	left: 70px;
+	padding: 10px;
+	z-index: 50;
+
+	.marketBoard {
+		background: #363f51;
+		background: -webkit-linear-gradient(top, #363f51 0%, #323c47 100%);
+		background: linear-gradient(to bottom, #363f51 0%, #323c47 100%);
+		border-radius: 4px;
+		box-shadow: 0 1px 4px black;
+		overflow: hidden;
+		width: 590px;
+		padding-bottom: 10px;
+
+		h2 {
+			color: $highlight;
+			font-size: 14px;
+			letter-spacing: 2px;
+			font-weight: 500;
+			padding: 5px;
+			margin-bottom: 5px;
+		}
+
+		.categories {
+			padding: 10px 14px;
+
+			.categoriesList {
+				display: flex;
+				flex-wrap: wrap;
+
+				button {
+					flex: 0 1 44px;
+					width: 44px;
+					height: 44px;
+					line-height: 42px;
+					background-color: #242a34;
+					border: none;
+					color: white;
+					margin: 1px;
+					outline: none;
+					border-radius: 2px;
+					cursor: pointer;
+					transition: $transition-speed;
+					text-align: center;
+					padding: 0;
+					text-shadow: 0 1px 3px black;
+
+					&:hover {
+						background-color: $color2;
+						box-shadow: 0 0 3px rgba($color: #000000, $alpha: 0.2);
+						position: relative;
+						z-index: 2;
+						color: white;
+					}
+
+					span {
+						font-size: 34px;
+						display: inline-block;
+						vertical-align: middle;
+						margin: 6px 0 0 0;
+					}
+				}
+			}
+		}
+	}
+}

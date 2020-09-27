@@ -17,7 +17,7 @@ export function SettingsButton() {
 			>
 				<span className="xiv-app_drawer_setting" />
 			</button>
-			<Tooltip text="Site Settings" id="settings" />
+			<Tooltip text="Site Settings" id="settings" place="bottom" />
 			<SettingsModal open={modalOpen} onRequestClose={closeModal} />
 		</div>
 	);
