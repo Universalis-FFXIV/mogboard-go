@@ -80,8 +80,7 @@
 
 .searchLoading {
 	position: absolute;
-	left: 360px;
+	left: calc(100% - 150px);
 	top: 10px;
 	height: 25px;
-	display: none;
 }

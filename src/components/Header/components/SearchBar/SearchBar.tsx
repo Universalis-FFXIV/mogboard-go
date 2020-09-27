@@ -7,7 +7,7 @@ import { SearchResults } from "./components/SearchResults";
 import loading from "./loading.svg";
 import styles from "./SearchBar.module.scss";
 import { MarketBoardCategories } from "./components/MarketBoardCategories";
-import { t } from "../../../../services/translation";
+import { getLang, t } from "../../../../services/translation";
 
 export function SearchBar() {
 	const [term, setTerm] = useState("");
@@ -16,11 +16,14 @@ export function SearchBar() {
 	const [totalItems, setTotalItems] = useState(0);
 	const [categorySelectActive, setCategorySelectActive] = useState(false);
 	const [headerText, setHeaderText] = useState<string | undefined>(undefined);
+	const [searching, setSearching] = useState(false);
 
-	const search = async (term: string) => {
+	const search = async (searchTerm: string) => {
 		setHeaderText(undefined);
-		if (term.length >= 2) {
-			const [res, _totalItems] = await getGameDataProvider().search(term);
+		if (searchTerm.length >= 2) {
+			setSearching(true);
+			const [res, _totalItems] = await getGameDataProvider().search(searchTerm, getLang());
+			setSearching(false);
 			setResults(res);
 			setTotalItems(_totalItems);
 		} else {
@@ -38,7 +41,14 @@ export function SearchBar() {
 				}}
 			>
 				<div className={styles.searchNav}>
-					<img src={loading} className={styles.searchLoading} alt="" />
+					<img
+						src={loading}
+						className={styles.searchLoading}
+						style={{
+							display: searching ? "block" : "none",
+						}}
+						alt=""
+					/>
 					<input
 						type="text"
 						className={`${styles.search} ${typing ? styles.typing : ""}`}
@@ -46,7 +56,7 @@ export function SearchBar() {
 						onChange={(e) => {
 							setTerm(e.currentTarget.value);
 							setTyping(true);
-							search(term);
+							search(e.currentTarget.value);
 						}}
 					/>
 					<MarketBoardButton onClick={() => setCategorySelectActive(!categorySelectActive)} />

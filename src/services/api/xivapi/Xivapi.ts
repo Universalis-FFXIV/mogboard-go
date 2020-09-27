@@ -18,7 +18,10 @@ export class Xivapi {
 		return res.result;
 	}
 
-	async search(term: string): Promise<[SearchResultItem[], TotalResults]> {
+	async search(
+		term: string,
+		language?: string | null,
+	): Promise<[SearchResultItem[], TotalResults]> {
 		const res = await this.rest.get<{
 			Pagination: {
 				Page: number;
@@ -41,6 +44,7 @@ export class Xivapi {
 				limit: "100",
 				sort_field: "LevelItem",
 				sort_order: "desc",
+				language: language || "en",
 			})}`,
 		);
 
