@@ -1,0 +1,43 @@
+.searchNav {
+	display: flex;
+	background: linear-gradient(to bottom, #363f51 0%, #323c47 100%);
+	position: relative;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px black;
+	overflow: hidden;
+	margin: 0 0 0 19px;
+	height: 46px;
+}
+
+.search {
+	height: 46px;
+	width: 400px;
+	line-height: 46px;
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: 17px;
+	padding: 0 16px;
+	transition: 150ms;
+	outline: none;
+	border-right: 1px solid black;
+	box-shadow: 1px 0 #444;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+
+	&:focus {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+}
+
+.searchLoading {
+	position: absolute;
+	left: 360px;
+	top: 10px;
+	height: 25px;
+	display: none;
+}

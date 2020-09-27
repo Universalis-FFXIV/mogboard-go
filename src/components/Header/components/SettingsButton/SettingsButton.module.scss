@@ -1,0 +1,22 @@
+@import "../../../../styles/animations";
+@import "../../../../styles/forms";
+
+.settingsButton {
+	height: $form-field-height;
+	border: none;
+	padding: 8px 2px 0 2px;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	margin: 0 10px;
+
+	span {
+		font-size: 32px;
+		color: #444;
+		transition: $transition-speed;
+
+		&:hover {
+			color: #888;
+		}
+	}
+}

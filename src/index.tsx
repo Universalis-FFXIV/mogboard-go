@@ -4,8 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { CookiesProvider } from "react-cookie";
-import "./reset.css";
-import "./index.css";
+import "./reset.scss";
+import "./index.scss";
 
 ReactDOM.render(
 	<CookiesProvider>

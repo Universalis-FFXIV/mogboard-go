@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "react-modal";
 import styles from "./SettingsModal.module.scss";
 import { DropDown } from "../DropDown";
@@ -8,19 +8,17 @@ import { useSettings } from "../../hooks/useSettings";
 import { YesNoDropDown } from "../YesNoDropDown";
 import { LangDropDown } from "../LangDropDown";
 import { ServerDropDown } from "../ServerDropDown";
+import { toast } from "react-toastify";
 
 export function SettingsModal(props: SettingsModalProps) {
-	const [modalOpen, setModalOpen] = useState(props.open != null && props.open);
-	const closeModal = () => setModalOpen(false);
-
 	const [settings, saveSettings] = useSettings();
 
 	return (
 		<Modal
 			overlayClassName={styles.modalOverlay}
 			className={styles.modal}
-			isOpen={modalOpen}
-			onRequestClose={closeModal}
+			isOpen={props.open}
+			onRequestClose={props.onRequestClose}
 			appElement={document.getElementById("root")!}
 		>
 			<div className={`${styles.flex} ${styles.row}`}>
@@ -92,13 +90,14 @@ export function SettingsModal(props: SettingsModalProps) {
 					className={styles.saveButton}
 					onClick={() => {
 						saveSettings();
-						closeModal();
+						toast.success("Settings saved!");
+						props.onRequestClose();
 					}}
 				>
 					{t("Save Settings", "option_save_settings")}
 				</button>
 			</div>
-			<button className={styles.closeButton} onClick={closeModal}>
+			<button className={styles.closeButton} onClick={props.onRequestClose}>
 				<i className="xiv-NavigationClose" />
 			</button>
 		</Modal>
@@ -106,5 +105,6 @@ export function SettingsModal(props: SettingsModalProps) {
 }
 
 export interface SettingsModalProps {
-	open?: boolean;
+	open: boolean;
+	onRequestClose: () => void;
 }

@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "./universalis.png";
-import loading from "./loading.svg";
+import { SearchBar } from "./components/SearchBar";
+import { SettingsButton } from "./components/SettingsButton";
 
 export function Header() {
 	return (
@@ -13,14 +14,7 @@ export function Header() {
 						<img src={logo} alt="" />
 					</Link>
 				</div>
-				<div className={styles.headerNav}>
-					<img src={loading} className={styles.searchLoading} alt="" />
-					<input type="text" className={styles.search} placeholder="Search" />
-					<button className={styles.marketBoardButton}>
-						<i className="xiv-Market" />
-						<span>Market</span>
-					</button>
-				</div>
+				<SearchBar />
 			</div>
 			<div>
 				<div>
@@ -29,11 +23,7 @@ export function Header() {
 					</Link>
 					<span className={styles.username}>karashiiro</span>
 				</div>
-				<div>
-					<button className={styles.settingsButton} data-tippy-content="Site Settings">
-						<span className="xiv-app_drawer_setting" />
-					</button>
-				</div>
+				<SettingsButton />
 			</div>
 		</header>
 	);

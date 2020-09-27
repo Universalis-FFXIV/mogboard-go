@@ -1,0 +1,31 @@
+.marketBoardButton {
+	border-right: none;
+	box-shadow: none;
+
+	height: 46px;
+	line-height: 46px;
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: 17px;
+	padding: 0 16px;
+	transition: 150ms;
+	outline: none;
+
+	i {
+		font-size: 19px;
+		vertical-align: middle;
+		display: inline-table;
+		margin: 0 6px -3px 0;
+	}
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+
+	&:focus {
+		background-color: rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
+}
