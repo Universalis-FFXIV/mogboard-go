@@ -34,6 +34,50 @@
 	}
 }
 
+.typing {
+	background: linear-gradient(270deg, rgba(213, 184, 55, 0.15), rgba(98, 184, 246, 0.15));
+	background-size: 400% 400%;
+	-webkit-animation: searchAnimation 4s ease infinite;
+	-moz-animation: searchAnimation 4s ease infinite;
+	animation: searchAnimation 4s ease infinite;
+}
+
+@-webkit-keyframes searchAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@-moz-keyframes searchAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes searchAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .searchLoading {
 	position: absolute;
 	left: 360px;

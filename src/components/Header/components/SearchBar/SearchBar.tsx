@@ -41,7 +41,7 @@ export function SearchBar() {
 					<img src={loading} className={styles.searchLoading} alt="" />
 					<input
 						type="text"
-						className={styles.search}
+						className={`${styles.search} ${typing ? styles.typing : ""}`}
 						placeholder={t("Search", "generic_search")}
 						onChange={(e) => {
 							setTerm(e.currentTarget.value);
