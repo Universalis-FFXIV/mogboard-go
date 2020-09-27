@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { CookiesProvider } from "react-cookie";
 import "./reset.scss";
 import "./index.scss";
+import "./styles/rarity.scss";
 
 ReactDOM.render(
 	<CookiesProvider>

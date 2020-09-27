@@ -1,5 +1,6 @@
 import { RestClient } from "typed-rest-client";
-import { Item } from "./models";
+import { buildQueryString } from "../../../util/url";
+import { Item, SearchResultItem } from "./models";
 
 export class Xivapi {
 	private rest: RestClient;
@@ -16,6 +17,37 @@ export class Xivapi {
 
 		return res.result;
 	}
+
+	async search(term: string): Promise<[SearchResultItem[], TotalResults]> {
+		const res = await this.rest.get<{
+			Pagination: {
+				Page: number;
+				PageNext: number;
+				PagePrev: number;
+				PageTotal: number;
+				Results: number;
+				ResultsPerPage: number;
+				ResultsTotal: number;
+			};
+			Results: SearchResultItem[];
+			SpeedMs: number;
+		}>(
+			`/search${buildQueryString({
+				indexes: "item",
+				filters: "ItemSearchCategory.ID>=1",
+				columns:
+					"ID,Icon,Name,LevelItem,Rarity,ItemSearchCategory.Name,ItemSearchCategory.ID,ItemKind.Name",
+				string: term.trim(),
+				limit: "100",
+				sort_field: "LevelItem",
+				sort_order: "desc",
+			})}`,
+		);
+
+		return [res.result?.Results || [], res.result?.Pagination.ResultsTotal || 0];
+	}
 }
+
+export type TotalResults = number;
 
 export default Object.freeze(new Xivapi());

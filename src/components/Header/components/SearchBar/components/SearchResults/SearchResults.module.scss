@@ -1,0 +1,94 @@
+@import "../../../../../../styles/colors";
+
+.searchResultsContainer {
+	position: absolute;
+	top: 60px;
+	left: 70px;
+	padding: 10px;
+	z-index: 50;
+
+	.searchResults {
+		background: linear-gradient(to bottom, #363f51 0%, #323c47 100%);
+		border-radius: 4px;
+		box-shadow: 0 1px 4px black;
+		overflow: hidden;
+		width: 590px;
+
+		.itemSearchHeader {
+			display: flex;
+			background-color: #434857;
+			box-shadow: 0 3px 0 rgba($color: #000000, $alpha: 0.5);
+			font-size: 14px;
+			margin-bottom: 0;
+			height: 40px;
+			line-height: 40px;
+			position: relative;
+			z-index: 10;
+
+			div:first-of-type {
+				flex: 0 1 75%;
+				padding: 0 15px;
+				font-size: 16px;
+			}
+
+			div:last-of-type {
+				flex: 0 1 25%;
+				text-align: right;
+			}
+		}
+
+		.itemSearchList {
+			min-height: 300px;
+			max-height: 1500px;
+			height: 490px;
+
+			overflow-y: scroll;
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+			::-webkit-scrollbar {
+				display: none;
+			}
+
+			a {
+				display: flex;
+				width: 100%;
+				border-bottom: 1px solid black;
+				line-height: 42px;
+				height: 42px;
+				padding: 0 10px 0 0;
+				position: relative;
+				overflow: hidden;
+
+				&:hover {
+					background-color: $color5;
+				}
+			}
+		}
+	}
+}
+
+.itemIcon {
+	overflow: hidden;
+	position: relative;
+	width: 42px;
+	height: 42px;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.itemLevel {
+	color: $highlight;
+	display: inline-block;
+	margin-right: 5px;
+	font-weight: 400;
+	width: 40px;
+}
+
+.itemCategory {
+	position: absolute;
+	right: 20px;
+	color: $table-color-3x;
+	font-size: 11px;
+	text-transform: uppercase;
+	text-shadow: none;
+}
