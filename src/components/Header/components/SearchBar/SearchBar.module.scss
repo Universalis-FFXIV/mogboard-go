@@ -1,3 +1,5 @@
+@import "../../../../styles/colors";
+
 .searchNav {
 	display: flex;
 	background: linear-gradient(to bottom, #363f51 0%, #323c47 100%);
@@ -31,6 +33,10 @@
 	&:focus {
 		background-color: rgba(0, 0, 0, 0.2);
 		cursor: pointer;
+	}
+
+	&::placeholder {
+		color: $color6;
 	}
 }
 

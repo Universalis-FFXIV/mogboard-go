@@ -5,6 +5,8 @@ import logo from "./universalis.png";
 import { SearchBar } from "./components/SearchBar";
 import { SettingsButton } from "./components/SettingsButton";
 import { t } from "../../services/translation";
+import { AuthClient } from "../../services/auth";
+import { DiscordLoginButton } from "./components/DiscordLoginButton";
 
 export function Header() {
 	return (
@@ -18,12 +20,21 @@ export function Header() {
 				<SearchBar />
 			</div>
 			<div>
-				<div>
-					<Link className={styles.myAccount} to="/account">
-						{t("My Account", "header_myaccount")}
-					</Link>
-					<span className={styles.username}>karashiiro</span>
-				</div>
+				{(() => {
+					if (AuthClient.isLoggedIn) {
+						return (
+							<div>
+								<Link className={styles.myAccount} to="/account">
+									{t("My Account", "header_myaccount")}
+								</Link>
+								<span className={styles.username}>{AuthClient.username}</span>
+							</div>
+						);
+					} else {
+						return <DiscordLoginButton />;
+					}
+				})()}
+
 				<SettingsButton />
 			</div>
 		</header>

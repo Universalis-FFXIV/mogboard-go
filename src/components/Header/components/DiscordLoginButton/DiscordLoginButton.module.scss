@@ -1,0 +1,21 @@
+@import "../../../../styles/animations";
+@import "../../../../styles/colors";
+
+.loginButton {
+	background-color: $purple-2x;
+	border-radius: 3px;
+	box-shadow: 0 1px 3px black;
+	color: white;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 15px;
+	font-weight: 600;
+	font-size: 17px;
+	transition: $transition-speed;
+	margin-top: 3px;
+
+	&:hover {
+		background-color: $purple;
+		color: white;
+	}
+}

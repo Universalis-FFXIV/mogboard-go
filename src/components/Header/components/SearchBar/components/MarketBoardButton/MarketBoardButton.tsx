@@ -7,6 +7,7 @@ export function MarketBoardButton(props: MarketBoardButtonProps) {
 		<div>
 			<button className={styles.marketBoardButton} onClick={props.onClick}>
 				<i className="xiv-Market" />
+				&nbsp;
 				<span>{t("Market", "header_market")}</span>
 			</button>
 		</div>
