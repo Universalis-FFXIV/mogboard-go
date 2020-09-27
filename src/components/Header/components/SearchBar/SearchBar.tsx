@@ -7,6 +7,7 @@ import { SearchResults } from "./components/SearchResults";
 import loading from "./loading.svg";
 import styles from "./SearchBar.module.scss";
 import { MarketBoardCategories } from "./components/MarketBoardCategories";
+import { t } from "../../../../services/translation";
 
 export function SearchBar() {
 	const [term, setTerm] = useState("");
@@ -41,7 +42,7 @@ export function SearchBar() {
 					<input
 						type="text"
 						className={styles.search}
-						placeholder="Search"
+						placeholder={t("Search", "generic_search")}
 						onChange={(e) => {
 							setTerm(e.currentTarget.value);
 							setTyping(true);

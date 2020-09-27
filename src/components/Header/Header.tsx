@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import logo from "./universalis.png";
 import { SearchBar } from "./components/SearchBar";
 import { SettingsButton } from "./components/SettingsButton";
+import { t } from "../../services/translation";
 
 export function Header() {
 	return (
@@ -19,7 +20,7 @@ export function Header() {
 			<div>
 				<div>
 					<Link className={styles.myAccount} to="/account">
-						My Account
+						{t("My Account", "header_myaccount")}
 					</Link>
 					<span className={styles.username}>karashiiro</span>
 				</div>

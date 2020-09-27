@@ -44,13 +44,6 @@
 			max-height: 1500px;
 			height: 490px;
 
-			overflow-y: scroll;
-			-ms-overflow-style: none;
-			scrollbar-width: none;
-			::-webkit-scrollbar {
-				display: none;
-			}
-
 			a {
 				display: flex;
 				width: 100%;

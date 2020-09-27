@@ -1,0 +1,33 @@
+@import "../../styles/colors";
+
+.sidebar {
+	min-height: 100vh;
+	background-color: $color5;
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 250px;
+	box-shadow: 0 1px 3px black;
+	overflow: hidden;
+
+	.navHome {
+		display: block;
+		padding: 20px 0;
+		text-align: center;
+		background: #304457;
+		background: -webkit-linear-gradient(bottom, #7dabd6 0%, #5a6a7a 100%);
+		background: linear-gradient(to bottom, #7dabd6 0%, #5a6a7a 100%);
+		border-bottom: 1px solid black;
+
+		img {
+			height: 30px;
+			filter: drop-shadow(0 2px 70px white) drop-shadow(0 2px 20px white);
+		}
+	}
+}
+
+.scrollbar {
+	height: 100vh;
+}
