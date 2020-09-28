@@ -1,0 +1,24 @@
+@import "../../../../styles/colors";
+
+.homeNav {
+	flex: 0 1 240px;
+
+	strong {
+		text-align: left;
+		display: block;
+		margin: 0 0 10px 0;
+	}
+
+	p {
+		line-height: 22px;
+		text-align: justify;
+	}
+}
+
+.textGrey {
+	color: $color6;
+}
+
+.tac {
+	text-align: center !important;
+}

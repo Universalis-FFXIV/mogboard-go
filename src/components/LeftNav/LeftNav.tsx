@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ScrollBar } from "../ScrollBar";
 import { Categories } from "./components/Categories";
 import styles from "./LeftNav.module.scss";
-import logo from "./universalis_bodge.png";
+import logo from "../../images/universalis_bodge.png";
 
 export function LeftNav(props: LeftNavProps) {
 	if (!props.enabled) return <></>;

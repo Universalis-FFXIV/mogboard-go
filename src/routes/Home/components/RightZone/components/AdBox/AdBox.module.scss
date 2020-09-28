@@ -1,0 +1,72 @@
+@import "../../../../../../styles/colors";
+
+.homeBox {
+	background-color: $dark-blue;
+	box-shadow: 0 1px 3px black;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.patreonDiscord {
+	display: flex;
+	overflow: hidden;
+
+	a {
+		flex: 0 1 50%;
+		display: inline-block;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		position: relative;
+
+		&:hover {
+			color: white;
+		}
+	}
+}
+
+.discord {
+	background-color: #7289da;
+	font-weight: bold;
+	text-shadow: none;
+	overflow: hidden;
+	color: white;
+
+	span {
+		transition: 150ms cubic-bezier(0.4, 0, 1, 1);
+		display: inline-block;
+		position: relative;
+
+		img {
+			vertical-align: middle;
+			height: 30px;
+		}
+
+		&:hover {
+			transform: scale(1.4);
+			color: white;
+		}
+	}
+}
+
+.patreon {
+	background-color: #7500b2;
+	border-left: solid 2px black;
+	overflow: hidden;
+
+	span {
+		transition: 150ms cubic-bezier(0.4, 0, 1, 1);
+		display: inline-block;
+		position: relative;
+
+		img {
+			vertical-align: middle;
+			height: 60px;
+		}
+
+		&:hover {
+			transform: scale(1.4);
+		}
+	}
+}
