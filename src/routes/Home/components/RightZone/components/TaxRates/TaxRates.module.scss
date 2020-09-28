@@ -1,0 +1,38 @@
+.updatesBox {
+	background-color: #222;
+	border-radius: 5px;
+	display: flex;
+	box-shadow: 0 1px 3px black;
+
+	.updatesBoxContent {
+		border-right: none;
+		flex: 0 1 auto;
+		flex-grow: 1;
+		padding: 10px;
+		text-align: center;
+		font-size: 14px;
+
+		img {
+			display: inline-table;
+			vertical-align: middle;
+			margin: 0 2px 2px 0;
+		}
+	}
+
+	h5 {
+		font-size: 14px !important;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin: 0 0 3px 0;
+		color: #555;
+	}
+}
+
+.flex {
+	display: flex;
+	position: relative;
+}
+
+.flex50 {
+	flex: 0 1 50%;
+}
