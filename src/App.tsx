@@ -7,6 +7,8 @@ import { useSettings } from "./hooks/useSettings";
 import { Header } from "./components/Header";
 import { ToastContainer } from "./components/ToastContainer";
 import { LeftNav } from "./components/LeftNav";
+import { NotFound } from "./routes/NotFound";
+import { ErrorPage } from "./routes/ErrorPage";
 
 export function App() {
 	const [settings] = useSettings();
@@ -24,6 +26,8 @@ export function App() {
 				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route path="/404" component={NotFound} />
+					<Route path="/:error" component={ErrorPage} />
 					<Route path="*">
 						<Redirect to="/404" />
 					</Route>

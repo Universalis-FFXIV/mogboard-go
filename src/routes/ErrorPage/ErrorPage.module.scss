@@ -1,0 +1,27 @@
+@import "../../styles/colors";
+
+.errorPage {
+	width: 100%;
+	max-width: 800px;
+	margin: 25px auto;
+	background-color: $color5;
+	box-shadow: 0 1px 3px black;
+	border-bottom: solid 5px #7a7502;
+	border-radius: 5px;
+	padding: 60px 20px;
+	text-align: center;
+
+	img {
+		margin-bottom: 25px;
+		height: 160px;
+	}
+
+	h2 {
+		font-size: 32px;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-size: 18px;
+	}
+}

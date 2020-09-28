@@ -109,3 +109,17 @@ pre strong,
 code strong {
 	color: #2cdd8f;
 }
+
+main {
+	padding: 10px 30px;
+}
+@media (max-width: 61.24em) {
+	main {
+		padding: 10px;
+	}
+}
+@media (max-width: 39.99em) {
+	main {
+		padding: 80px 10px 100px 10px;
+	}
+}
