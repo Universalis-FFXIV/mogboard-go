@@ -56,7 +56,10 @@
 		"extends": [
 			"react-app",
 			"plugin:prettier/recommended"
-		]
+		],
+		"rules": {
+			"no-var": "error"
+		}
 	},
 	"browserslist": {
 		"production": [

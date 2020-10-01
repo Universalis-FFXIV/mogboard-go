@@ -1,6 +1,6 @@
 import { RestClient } from "typed-rest-client";
 import { buildQueryString } from "../../../util/url";
-import { RecentlyUpdated, TaxRates, UploadHistory } from "./models";
+import { RecentlyUpdated, TaxRates, UploadHistory, WorldUploadCounts } from "./models";
 
 class Universalis {
 	private rest: RestClient;
@@ -23,6 +23,11 @@ class Universalis {
 		const res = await this.rest.get<TaxRates>(
 			`/api/tax-rates${buildQueryString({ world: world.toString() })}`,
 		);
+		return res.result!;
+	}
+
+	async worldUploadCounts(): Promise<WorldUploadCounts> {
+		const res = await this.rest.get<WorldUploadCounts>("/api/extra/stats/world-upload-counts");
 		return res.result!;
 	}
 }

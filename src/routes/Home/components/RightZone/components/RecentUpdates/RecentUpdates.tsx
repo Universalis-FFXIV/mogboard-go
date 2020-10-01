@@ -5,6 +5,7 @@ import { getGameDataProvider } from "../../../../../../services/api/xivapi";
 import { Item } from "../../../../../../services/api/xivapi/models";
 import { t } from "../../../../../../services/translation";
 import styles from "./RecentUpdates.module.scss";
+import error from "./error.png";
 
 export function RecentUpdates() {
 	const [items, setItems] = useState<Array<Item>>([]);
@@ -46,6 +47,9 @@ function RecentUpdateItem(props: RecentUpdateItemProps) {
 				<Link to={`/market/${props.itemId}`}>
 					<img
 						src={`https://universalis-ffxiv.github.io/universalis-assets/icon2x/${props.itemId}.png`}
+						onError={(e) => {
+							e.currentTarget.src = error;
+						}}
 						alt=""
 					/>
 				</Link>
