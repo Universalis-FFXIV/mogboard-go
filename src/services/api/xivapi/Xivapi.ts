@@ -9,8 +9,12 @@ export class Xivapi {
 		this.rest = new RestClient(null, baseUrl);
 	}
 
-	async item(id: number): Promise<Item> {
-		const res = await this.rest.get<Item>(`/Item/${id}`);
+	async item(id: number, language?: string | null): Promise<Item> {
+		const res = await this.rest.get<Item>(
+			`/Item/${id}${buildQueryString({
+				language: language || "en",
+			})}`,
+		);
 		if (res.result == null) {
 			throw new Error("Item not found!");
 		}

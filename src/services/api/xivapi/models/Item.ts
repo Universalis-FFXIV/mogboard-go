@@ -1,3 +1,9 @@
 export interface Item {
-	// Add things as needed, not typing the whole thing
+	ID: number;
+	ItemKind: {
+		Name: string;
+	};
+	LevelItem: number;
+	Name: string;
+	Rarity: number;
 }
