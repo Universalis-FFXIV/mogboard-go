@@ -6,3 +6,12 @@
 	max-width: 1400px;
 	margin: 0 auto;
 }
+
+.centerZone {
+	flex: 0 1 calc(100% - 240px - 360px);
+	padding: 0 20px;
+}
+
+.rightZone {
+	flex: 0 1 360px;
+}

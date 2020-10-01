@@ -6,9 +6,9 @@ import bg from "./bg.png";
 import universalis_bodge from "../../../../images/universalis_bodge.png";
 import homepage from "./homepage.png";
 
-export function CenterZone() {
+export function CenterZone(props: CenterZoneProps) {
 	return (
-		<div className={styles.centerZone}>
+		<div className={props.className}>
 			<div
 				className={styles.theBigNewsPost}
 				style={{
@@ -55,4 +55,8 @@ export function CenterZone() {
 			</div>
 		</div>
 	);
+}
+
+export interface CenterZoneProps {
+	className?: string;
 }

@@ -4,11 +4,10 @@ import { RecentUpdates } from "./components/RecentUpdates";
 import { TaxRates } from "./components/TaxRates";
 import { UploadCountsGraph } from "./components/UploadCountsGraph";
 import { UploadCountsTotal } from "./components/UploadCountsTotal";
-import styles from "./RightZone.module.scss";
 
-export function RightZone() {
+export function RightZone(props: RightZoneProps) {
 	return (
-		<div className={styles.rightZone}>
+		<div className={props.className}>
 			<AdBox />
 			<RecentUpdates />
 			<TaxRates />
@@ -16,4 +15,8 @@ export function RightZone() {
 			<UploadCountsTotal />
 		</div>
 	);
+}
+
+export interface RightZoneProps {
+	className?: string;
 }
