@@ -2,6 +2,7 @@ import { Lang, TranslationItem } from "./models";
 
 import deLang from "../../translations/Universalis_German.json";
 import zhLang from "../../translations/Universalis_Chinese_simplified.json";
+import { LANG_LOCALE } from "../../data/LANG_LOCALE";
 
 class Translate {
 	private lang?: Lang | null;
@@ -42,6 +43,10 @@ class Translate {
 
 	getLang(): Lang | null | undefined {
 		return this.lang;
+	}
+
+	getLocale(): string {
+		return LANG_LOCALE[this.getLang() || "en"];
 	}
 }
 

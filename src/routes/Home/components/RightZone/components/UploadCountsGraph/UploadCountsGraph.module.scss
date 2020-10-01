@@ -6,19 +6,12 @@
 
 	margin-bottom: 20px;
 
-	.updatesBoxContent {
-		border-right: none;
+	& > div {
 		flex: 0 1 auto;
 		flex-grow: 1;
 		padding: 10px;
 		text-align: center;
 		font-size: 14px;
-
-		img {
-			display: inline-table;
-			vertical-align: middle;
-			margin: 0 2px 2px 0;
-		}
 	}
 
 	h5 {
@@ -28,6 +21,16 @@
 		margin: 0 0 3px 0;
 		color: #555;
 	}
+}
+
+.mogHonorable {
+	opacity: 0.5;
+	color: #ccc;
+	font-size: 15px;
+	line-height: 22px;
+
+	text-align: center;
+	margin-top: 5px;
 }
 
 .flex {
