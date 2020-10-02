@@ -14,10 +14,7 @@ class Translate {
 
 	t(text: string, key: string): string {
 		const translation = this.currentLangFile?.find((tl) => tl.context === key)?.definition;
-		if (translation != null) {
-			return translation;
-		}
-		return text;
+		return translation || text;
 	}
 
 	setLang(lang: Lang) {

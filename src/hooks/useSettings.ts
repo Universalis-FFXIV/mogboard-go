@@ -10,32 +10,32 @@ export function useSettings(): [Settings, SaveSettings] {
 		"mogboard_leftnav",
 		"mogboard_homeworld",
 	]);
-	const settings = {
-		mogboard_server: cookies.mogboard_server || "Adamantoise",
-		mogboard_language: cookies.mogboard_language || "en",
-		mogboard_timezone: cookies.mogboard_timezone || "Pacific/Apia",
-		mogboard_leftnav: cookies.mogboard_leftnav || "no",
-		mogboard_homeworld: cookies.mogboard_homeworld || "no",
+	const settings: Settings = {
+		mogboardServer: cookies.mogboardServer || "Adamantoise",
+		mogboardLanguage: cookies.mogboardLanguage || "en",
+		mogboardTimezone: cookies.mogboardTimezone || "Pacific/Apia",
+		mogboardLeftNav: cookies.mogboardLeftNav || "no",
+		mogboardHomeWorld: cookies.mogboardHomeWorld || "no",
 	};
 	const saveSettings = () => {
-		setCookie("mogboard_server", settings.mogboard_server, { path: "/", sameSite: "strict" });
-		setCookie("mogboard_language", settings.mogboard_language, { path: "/", sameSite: "strict" });
-		setCookie("mogboard_timezone", settings.mogboard_timezone, { path: "/", sameSite: "strict" });
-		setCookie("mogboard_leftnav", settings.mogboard_leftnav, { path: "/", sameSite: "strict" });
-		setCookie("mogboard_homeworld", settings.mogboard_homeworld, { path: "/", sameSite: "strict" });
+		setCookie("mogboard_server", settings.mogboardServer, { path: "/", sameSite: "strict" });
+		setCookie("mogboard_language", settings.mogboardLanguage, { path: "/", sameSite: "strict" });
+		setCookie("mogboard_timezone", settings.mogboardTimezone, { path: "/", sameSite: "strict" });
+		setCookie("mogboard_leftnav", settings.mogboardLeftNav, { path: "/", sameSite: "strict" });
+		setCookie("mogboard_homeworld", settings.mogboardHomeWorld, { path: "/", sameSite: "strict" });
 
-		setLang(settings.mogboard_language);
+		setLang(settings.mogboardLanguage);
 	};
 
 	return [settings, saveSettings];
 }
 
 interface Settings {
-	mogboard_server: string;
-	mogboard_language: Lang;
-	mogboard_timezone: string;
-	mogboard_leftnav: "yes" | "no";
-	mogboard_homeworld: "yes" | "no";
+	mogboardServer: string;
+	mogboardLanguage: Lang;
+	mogboardTimezone: string;
+	mogboardLeftNav: "yes" | "no";
+	mogboardHomeWorld: "yes" | "no";
 }
 
 type SaveSettings = () => void;

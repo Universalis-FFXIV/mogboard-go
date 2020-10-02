@@ -19,10 +19,10 @@ export function TaxRatesPanel() {
 
 	useEffect(() => {
 		(async () => {
-			const resTaxRates = await Universalis.taxRates(settings.mogboard_server);
+			const resTaxRates = await Universalis.taxRates(settings.mogboardServer);
 			setTaxRates(resTaxRates);
 		})();
-	}, [settings.mogboard_server]);
+	}, [settings.mogboardServer]);
 
 	return (
 		<div className={`${styles.flex} ${styles.updatesBox}`}>
@@ -30,7 +30,7 @@ export function TaxRatesPanel() {
 				<h5>
 					{printf(
 						t("Current Market Tax Rates on %s", "home_current_tax_rates"),
-						settings.mogboard_server,
+						settings.mogboardServer,
 					)}
 				</h5>
 				<br />

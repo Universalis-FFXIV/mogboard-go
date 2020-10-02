@@ -25,7 +25,7 @@ export function UploadCountsGraph() {
 				<h5>{t("Upload Counts by World", "home_upload_counts_world")}</h5>
 				<br />
 				<div className={styles.flex}>
-					<Graph worldUploadCounts={worldUploadCounts} server={settings.mogboard_server} />
+					<Graph worldUploadCounts={worldUploadCounts} server={settings.mogboardServer} />
 				</div>
 			</div>
 		</div>

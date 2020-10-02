@@ -12,14 +12,14 @@ import { ErrorPage } from "./routes/ErrorPage";
 
 export function App() {
 	const [settings] = useSettings();
-	setLang(settings.mogboard_language);
+	setLang(settings.mogboardLanguage);
 
 	return (
 		<div>
-			<LeftNav enabled={settings.mogboard_leftnav === "yes"} />
+			<LeftNav enabled={settings.mogboardLeftNav === "yes"} />
 			<div
 				style={{
-					marginLeft: settings.mogboard_leftnav === "yes" ? "250px" : "inherit",
+					marginLeft: settings.mogboardLeftNav === "yes" ? "250px" : "inherit",
 					position: "relative",
 				}}
 			>

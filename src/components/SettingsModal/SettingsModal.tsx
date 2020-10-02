@@ -25,23 +25,23 @@ export function SettingsModal(props: SettingsModalProps) {
 				<div className={styles.flex50}>
 					<label>{t("Your Server", "generic_your_server")}</label>
 					<ServerDropDown
-						defaultValue={settings.mogboard_server}
-						onChange={(e) => (settings.mogboard_server = e.currentTarget.value)}
+						defaultValue={settings.mogboardServer}
+						onChange={(e) => (settings.mogboardServer = e.currentTarget.value)}
 					/>
 				</div>
 				<div className={styles.flex50}>
 					<label>{t("Language", "generic_language")}</label>
 					<LangDropDown
-						defaultValue={settings.mogboard_language}
-						onChange={(e) => (settings.mogboard_language = e.currentTarget.value)}
+						defaultValue={settings.mogboardLanguage}
+						onChange={(e) => (settings.mogboardLanguage = e.currentTarget.value)}
 					/>
 				</div>
 			</div>
 			<div className={styles.row}>
 				<label>{t("Timezone", "generic_timezone")}</label>
 				<DropDown
-					defaultValue={settings.mogboard_timezone}
-					onChange={(e) => (settings.mogboard_timezone = e.currentTarget.value)}
+					defaultValue={settings.mogboardTimezone}
+					onChange={(e) => (settings.mogboardTimezone = e.currentTarget.value)}
 				>
 					<option disabled={true}>
 						{t("- Choose your timezone -", "option_choose_timezone_guide")}
@@ -65,8 +65,8 @@ export function SettingsModal(props: SettingsModalProps) {
 						</small>
 					</div>
 					<YesNoDropDown
-						defaultValue={settings.mogboard_leftnav}
-						onChange={(e) => (settings.mogboard_leftnav = e.currentTarget.value)}
+						defaultValue={settings.mogboardLeftNav}
+						onChange={(e) => (settings.mogboardLeftNav = e.currentTarget.value)}
 					/>
 				</div>
 				<div className={styles.flex50}>
@@ -80,8 +80,8 @@ export function SettingsModal(props: SettingsModalProps) {
 						</small>
 					</div>
 					<YesNoDropDown
-						defaultValue={settings.mogboard_homeworld}
-						onChange={(e) => (settings.mogboard_homeworld = e.currentTarget.value)}
+						defaultValue={settings.mogboardHomeWorld}
+						onChange={(e) => (settings.mogboardHomeWorld = e.currentTarget.value)}
 					/>
 				</div>
 			</div>
