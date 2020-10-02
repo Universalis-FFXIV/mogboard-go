@@ -13,10 +13,60 @@
 		line-height: 22px;
 		text-align: justify;
 	}
+
+	div {
+		background-color: $dark-blue;
+		box-shadow: 0 1px 3px black;
+		border-radius: 5px;
+		overflow: hidden;
+		margin-bottom: 25px;
+	}
+
+	h3 {
+		font-size: 20px;
+
+		img {
+			height: 16px;
+			display: inline-table;
+			vertical-align: middle;
+			margin: -3px 7px 0 0;
+		}
+	}
+
+	button,
+	a {
+		background-color: transparent;
+		border: none;
+		border-bottom: 1px solid black;
+		font-size: 15px;
+		padding: 10px;
+		text-align: left;
+		display: block;
+		width: 100%;
+		outline: none;
+		cursor: pointer;
+		color: white;
+
+		img {
+			display: inline-table;
+			height: 18px;
+			border-radius: 40px;
+			vertical-align: middle;
+			margin: -3px 5px 0 0;
+		}
+
+		&:hover {
+			background-color: $default-2x;
+		}
+	}
 }
 
 .textGrey {
 	color: $color6;
+}
+
+.btnDisabled {
+	pointer-events: none;
 }
 
 .tac {

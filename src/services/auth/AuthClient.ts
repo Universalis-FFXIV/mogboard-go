@@ -5,7 +5,7 @@ class AuthClient {
 	private _token: string;
 
 	constructor() {
-		this._loggedIn = false;
+		this._loggedIn = true;
 
 		this._username = "karashiiro";
 		this._token = "";
