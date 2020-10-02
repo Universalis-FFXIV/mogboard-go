@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./ErrorPage.module.scss";
 import titan from "../../images/patch_titan.png";
 import { t } from "../../services/translation";
+import { useTitle } from "../../hooks";
 
 export function ErrorPage() {
-	useEffect(() => {
-		document.title = t("Something went wrong", "error_generic_tabtitle") + " - Universalis";
-	});
+	useTitle(t("Something went wrong", "error_generic_tabtitle") + " - Universalis");
 
 	return (
 		<main>

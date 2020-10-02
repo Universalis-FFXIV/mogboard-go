@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { t } from "../../services/translation";
 import styles from "./NotFound.module.scss";
 import titan from "../../images/patch_titan.png";
+import { useTitle } from "../../hooks";
 
 export function NotFound() {
-	useEffect(() => {
-		document.title = t("404 Not Found", "error_404") + " - Universalis";
-	});
+	useTitle(t("404 Not Found", "error_404") + " - Universalis");
 
 	return (
 		<main>
