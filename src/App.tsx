@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { setLang } from "./services/translation";
 import { Home } from "./routes/Home";
 import { Footer } from "./components/Footer";
-import { useSettings } from "./hooks/useSettings";
+import { useSettings } from "./hooks";
 import { Header } from "./components/Header";
 import { ToastContainer } from "./components/ToastContainer";
 import { LeftNav } from "./components/LeftNav";

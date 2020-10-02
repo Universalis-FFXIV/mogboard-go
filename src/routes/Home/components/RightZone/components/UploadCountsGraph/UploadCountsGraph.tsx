@@ -6,7 +6,7 @@ import { t } from "../../../../../../services/translation";
 import styles from "./UploadCountsGraph.module.scss";
 import { WorldUploadCounts } from "../../../../../../services/api/universalis/models";
 import Universalis from "../../../../../../services/api/universalis/Universalis";
-import { useSettings } from "../../../../../../hooks/useSettings";
+import { useSettings } from "../../../../../../hooks";
 
 export function UploadCountsGraph() {
 	const [settings] = useSettings();

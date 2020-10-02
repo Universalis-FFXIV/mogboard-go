@@ -1,6 +1,6 @@
 import printf from "printf";
 import React, { useEffect, useState } from "react";
-import { useSettings } from "../../../../../../hooks/useSettings";
+import { useSettings } from "../../../../../../hooks";
 import { TaxRates } from "../../../../../../services/api/universalis/models";
 import Universalis from "../../../../../../services/api/universalis/Universalis";
 import { t } from "../../../../../../services/translation";

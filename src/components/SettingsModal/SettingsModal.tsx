@@ -4,7 +4,7 @@ import styles from "./SettingsModal.module.scss";
 import { DropDown } from "../DropDown";
 import { getTimeZones } from "../../util/time";
 import { t } from "../../services/translation";
-import { useSettings } from "../../hooks/useSettings";
+import { useSettings } from "../../hooks";
 import { YesNoDropDown } from "../YesNoDropDown";
 import { LangDropDown } from "../LangDropDown";
 import { ServerDropDown } from "../ServerDropDown";

@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./Home.module.scss";
 import { LeftZone } from "./components/LeftZone";
 import { CenterZone } from "./components/CenterZone";
 import { RightZone } from "./components/RightZone";
+import { useTitle } from "../../hooks";
 
 export function Home() {
-	useEffect(() => {
-		document.title = "Universalis";
-	});
+	useTitle("Universalis");
 
 	return (
 		<main>
