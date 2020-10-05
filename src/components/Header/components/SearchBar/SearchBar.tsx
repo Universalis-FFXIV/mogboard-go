@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OutsideCLickHandler from "react-outside-click-handler";
+import OutsideClickHandler from "react-outside-click-handler";
 import { SearchResultItem } from "../../../../services/api/xivapi/models";
 import { getGameDataProvider } from "../../../../services/api/xivapi";
 import { MarketBoardButton } from "./components/MarketBoardButton";
@@ -34,7 +34,7 @@ export function SearchBar() {
 
 	return (
 		<div>
-			<OutsideCLickHandler
+			<OutsideClickHandler
 				onOutsideClick={() => {
 					setTyping(false);
 					setCategorySelectActive(false);
@@ -77,7 +77,7 @@ export function SearchBar() {
 						setHeaderText(newHeaderText);
 					}}
 				/>
-			</OutsideCLickHandler>
+			</OutsideClickHandler>
 		</div>
 	);
 }

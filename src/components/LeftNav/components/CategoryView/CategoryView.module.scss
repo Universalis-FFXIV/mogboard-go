@@ -1,0 +1,63 @@
+@import "../../../../styles/colors";
+
+.marketCategoryView {
+	min-height: 100vh;
+	background-color: $table-color-4x;
+	box-shadow: 0 0 4px black;
+	position: fixed;
+	z-index: 500;
+	width: 400px;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 250px;
+
+	a {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 6px 6px 6px 15px;
+
+		& > span:first-of-type {
+			flex: 1 1 32px;
+
+			img {
+				border-radius: 3px;
+				box-shadow: 0 1px 2px black;
+				background-color: $color5;
+				vertical-align: middle;
+				display: inline-table;
+			}
+		}
+
+		& > span:last-of-type {
+			flex: 0 1 calc(100% - 32px);
+			padding-left: 10px;
+
+			small {
+				font-size: 13px;
+				font-weight: bold;
+				text-shadow: none;
+				text-transform: uppercase;
+				color: $default-2x;
+			}
+		}
+	}
+}
+
+.itemLevel {
+	display: inline-block;
+	margin: 0 10px 0 0;
+	color: $highlight;
+}
+
+.scrollbar {
+	min-height: 100%;
+	height: 490px;
+}
+
+.gap {
+	display: block;
+	height: 5px;
+}

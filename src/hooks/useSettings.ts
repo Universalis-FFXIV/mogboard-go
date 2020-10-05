@@ -11,11 +11,11 @@ export function useSettings(): [Settings, SaveSettings] {
 		"mogboard_homeworld",
 	]);
 	const settings: Settings = {
-		mogboardServer: cookies.mogboardServer || "Adamantoise",
-		mogboardLanguage: cookies.mogboardLanguage || "en",
-		mogboardTimezone: cookies.mogboardTimezone || "Pacific/Apia",
-		mogboardLeftNav: cookies.mogboardLeftNav || "no",
-		mogboardHomeWorld: cookies.mogboardHomeWorld || "no",
+		mogboardServer: cookies.mogboard_server || "Adamantoise",
+		mogboardLanguage: cookies.mogboard_language || "en",
+		mogboardTimezone: cookies.mogboard_timezone || "Pacific/Apia",
+		mogboardLeftNav: cookies.mogboard_leftnav || "no",
+		mogboardHomeWorld: cookies.mogboard_homeworld || "no",
 	};
 	const saveSettings = () => {
 		setCookie("mogboard_server", settings.mogboardServer, { path: "/", sameSite: "strict" });

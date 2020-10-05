@@ -1,6 +1,12 @@
 import * as R from "remeda";
 import { getLang } from "../translation";
 
+import categoriesEn from "../../data/DataExports/categories_en.json";
+import categoriesDe from "../../data/DataExports/categories_de.json";
+import categoriesFr from "../../data/DataExports/categories_fr.json";
+import categoriesJa from "../../data/DataExports/categories_ja.json";
+import categoriesZh from "../../data/DataExports/categories_zh.json";
+
 import category9 from "../../data/DataExports/ItemSearchCategory_9.json";
 import category10 from "../../data/DataExports/ItemSearchCategory_10.json";
 import category11 from "../../data/DataExports/ItemSearchCategory_11.json";
@@ -225,6 +231,27 @@ class ItemSearchCategories {
 			R.sort((a, b) => b.LevelItem - a.LevelItem),
 		);
 	}
+
+	getCategoryEx(id: number) {
+		switch (getLang()) {
+			case "en":
+				return (categoriesEn as Category)[`${id}`];
+			case "de":
+				return (categoriesDe as Category)[`${id}`];
+			case "fr":
+				return (categoriesFr as Category)[`${id}`];
+			case "ja":
+				return (categoriesJa as Category)[`${id}`];
+			case "zh":
+				return (categoriesZh as Category)[`${id}`];
+			default:
+				return (categoriesEn as Category)[`${id}`];
+		}
+	}
+}
+
+interface Category {
+	[key: string]: string[][];
 }
 
 export default Object.freeze(new ItemSearchCategories());
