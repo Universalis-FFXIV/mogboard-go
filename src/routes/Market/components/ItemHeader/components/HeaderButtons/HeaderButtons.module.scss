@@ -33,8 +33,11 @@
 	line-height: 32px;
 	font-size: 15px;
 	padding: 0 10px;
-	background-color: $default-3x;
 	border-radius: 3px;
+
+	&:hover {
+		background-color: $red !important;
+	}
 }
 
 .btnAddTo {
@@ -44,4 +47,8 @@
 	padding: 0 10px;
 	background-color: $default-3x;
 	border-radius: 3px;
+
+	&:hover {
+		background-color: $table-color;
+	}
 }

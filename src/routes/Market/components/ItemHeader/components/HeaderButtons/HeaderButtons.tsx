@@ -1,4 +1,5 @@
 import React from "react";
+import AuthClient from "../../../../../../services/auth/AuthClient";
 import styles from "./HeaderButtons.module.scss";
 
 export function HeaderButtons(props: HeaderButtonsProps) {
@@ -13,6 +14,7 @@ export function HeaderButtons(props: HeaderButtonsProps) {
 					Show on GarlandTools
 				</button>
 			</a>
+			&nbsp;
 			<a
 				href={`https://ffxivteamcraft.com/db/en/item/${props.itemId}`}
 				target="_blank"
@@ -22,11 +24,18 @@ export function HeaderButtons(props: HeaderButtonsProps) {
 					Show on Teamcraft
 				</button>
 			</a>
-
-			<button className={`${styles.btn} ${styles.btnAddTo}`}>Lists</button>
-			<button className={`${styles.btn} ${styles.btnAddTo}`}>
-				<span>Favourite</span>
-			</button>
+			&nbsp;
+			{(() => {
+				if (AuthClient.isLoggedIn) {
+					return (
+						<span>
+							<button className={`${styles.btn} ${styles.btnAddTo}`}>Lists</button>
+							&nbsp;
+							<button className={`${styles.btn} ${styles.btnAddTo}`}>Favourite</button>
+						</span>
+					);
+				}
+			})()}
 		</div>
 	);
 }
