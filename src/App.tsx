@@ -9,6 +9,7 @@ import { ToastContainer } from "./components/ToastContainer";
 import { LeftNav } from "./components/LeftNav";
 import { NotFound } from "./routes/NotFound";
 import { ErrorPage } from "./routes/ErrorPage";
+import { Market } from "./routes/Market";
 
 export function App() {
 	const [settings] = useSettings();
@@ -26,6 +27,7 @@ export function App() {
 				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route path="/market/:_itemId" component={Market} />
 					<Route path="/404" component={NotFound} />
 					<Route path="/:error" component={ErrorPage} />
 					<Route path="*">

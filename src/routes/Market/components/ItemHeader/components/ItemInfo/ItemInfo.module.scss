@@ -1,0 +1,31 @@
+@import "../../../../../../styles/colors";
+
+.itemInfo {
+	h1 {
+		font-size: 34px;
+		font-weight: 300;
+		display: inline-block;
+		margin: 0 20px 10px 0;
+
+		span {
+			color: $highlight;
+			display: inline-block;
+			font-weight: 400;
+			margin-right: 5px;
+		}
+	}
+}
+
+.itemInfo2 {
+	margin-bottom: 15px;
+
+	& > div:first-of-type {
+		margin-bottom: 8px;
+		color: #aaa;
+	}
+
+	& > div:last-of-type {
+		color: #666;
+		font-style: italic;
+	}
+}

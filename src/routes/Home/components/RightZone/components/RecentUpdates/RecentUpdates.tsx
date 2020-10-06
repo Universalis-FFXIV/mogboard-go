@@ -5,7 +5,8 @@ import { getGameDataProvider } from "../../../../../../services/api/xivapi";
 import { Item } from "../../../../../../services/api/xivapi/models";
 import { t } from "../../../../../../services/translation";
 import styles from "./RecentUpdates.module.scss";
-import error from "./error.png";
+import error from "../../../../../../images/error.png";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export function RecentUpdates() {
 	const [items, setItems] = useState<Array<Item>>([]);
@@ -45,12 +46,14 @@ function RecentUpdateItem(props: RecentUpdateItemProps) {
 		<div className={styles.item}>
 			<div className={styles.icon}>
 				<Link to={`/market/${props.itemId}`}>
-					<img
+					<LazyLoadImage
 						src={`https://universalis-ffxiv.github.io/universalis-assets/icon2x/${props.itemId}.png`}
+						height={55}
+						width={55}
+						placeholderSrc="http://xivapi.com/mb/loading.svg"
 						onError={(e) => {
 							e.currentTarget.src = error;
 						}}
-						alt=""
 					/>
 				</Link>
 			</div>
