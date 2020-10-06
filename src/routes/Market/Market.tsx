@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
-import { useTitle } from "../../hooks";
+import { SERVERS } from "../../data/SERVERS";
+import { useSettings, useTitle } from "../../hooks";
 import { getGameDataProvider } from "../../services/api/xivapi";
 import { Item } from "../../services/api/xivapi/models";
 import { ItemHeader } from "./components/ItemHeader";
+import { NavBar } from "./components/NavBar";
 
 export function Market() {
 	const { _itemId } = useParams<{ _itemId?: string }>();
@@ -17,7 +19,13 @@ export function Market() {
 		})();
 	}, [itemId]);
 
-	useTitle(`${item?.Name || ""} - Universalis`);
+	useTitle(item == null ? "Universalis" : `${item.Name} - Universalis`);
+
+	const [settings] = useSettings();
+	const dc = SERVERS.find((server) => server.worlds.includes(settings.mogboardServer))!;
+	const [viewServer, setViewServer] = useState<string>(
+		settings.mogboardHomeWorld === "yes" ? settings.mogboardServer : dc.dataCenter,
+	);
 
 	if (_itemId == null || isNaN(itemId)) {
 		return <Redirect to="/404" />;
@@ -28,7 +36,8 @@ export function Market() {
 	} else {
 		return (
 			<main>
-				<ItemHeader itemId={item.ID} />
+				<ItemHeader {...item} />
+				<NavBar viewServer={viewServer} setViewServer={setViewServer} />
 			</main>
 		);
 	}

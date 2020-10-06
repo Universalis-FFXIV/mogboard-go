@@ -4,14 +4,15 @@ import { HeaderButtons } from "./components/HeaderButtons";
 import styles from "./ItemHeader.module.scss";
 import error from "../../../../images/error.png";
 import { ItemInfo } from "./components/ItemInfo";
+import { Item } from "../../../../services/api/xivapi/models";
 
-export function ItemHeader(props: ItemHeaderProps) {
+export function ItemHeader(props: Item) {
 	return (
 		<div className={styles.itemHeader}>
-			<HeaderButtons itemId={props.itemId} />
+			<HeaderButtons itemId={props.ID} />
 			<div>
 				<LazyLoadImage
-					src={`https://universalis-ffxiv.github.io/universalis-assets/icon2x/${props.itemId}.png`}
+					src={`https://universalis-ffxiv.github.io/universalis-assets/icon2x/${props.ID}.png`}
 					height={100}
 					width={100}
 					placeholderSrc="http://xivapi.com/mb/loading.svg"
@@ -20,11 +21,7 @@ export function ItemHeader(props: ItemHeaderProps) {
 					}}
 				/>
 			</div>
-			<ItemInfo />
+			<ItemInfo {...props} />
 		</div>
 	);
-}
-
-export interface ItemHeaderProps {
-	itemId: number;
 }

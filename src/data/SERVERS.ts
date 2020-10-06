@@ -20,14 +20,33 @@ export const SERVERS: {
 		],
 	},
 	{
-		dataCenter: "Chaos",
-		locale: "Europe",
-		worlds: ["Cerberus", "Louisoix", "Moogle", "Omega", "Ragnarok", "Spriggan"],
+		dataCenter: "Primal",
+		locale: "America",
+		worlds: [
+			"Behemoth",
+			"Excalibur",
+			"Exodus",
+			"Famfrit",
+			"Hyperion",
+			"Lamia",
+			"Leviathan",
+			"Ultros",
+		],
 	},
 	{
 		dataCenter: "Crystal",
 		locale: "America",
 		worlds: ["Balmung", "Brynhildr", "Coeurl", "Diabolos", "Goblin", "Malboro", "Mateus", "Zalera"],
+	},
+	{
+		dataCenter: "Chaos",
+		locale: "Europe",
+		worlds: ["Cerberus", "Louisoix", "Moogle", "Omega", "Ragnarok", "Spriggan"],
+	},
+	{
+		dataCenter: "Light",
+		locale: "Europe",
+		worlds: ["Lich", "Odin", "Phoenix", "Shiva", "Zodiark", "Twintania"],
 	},
 	{
 		dataCenter: "Elemental",
@@ -63,11 +82,6 @@ export const SERVERS: {
 		],
 	},
 	{
-		dataCenter: "Light",
-		locale: "Europe",
-		worlds: ["Lich", "Odin", "Phoenix", "Shiva", "Zodiark", "Twintania"],
-	},
-	{
 		dataCenter: "Mana",
 		locale: "Japan",
 		worlds: [
@@ -84,20 +98,7 @@ export const SERVERS: {
 			"Titan",
 		],
 	},
-	{
-		dataCenter: "Primal",
-		locale: "America",
-		worlds: [
-			"Behemoth",
-			"Excalibur",
-			"Exodus",
-			"Famfrit",
-			"Hyperion",
-			"Lamia",
-			"Leviathan",
-			"Ultros",
-		],
-	},
+
 	{
 		dataCenter: "LuXingNiao",
 		dataCenterZh: "陆行鸟",

@@ -1,5 +1,6 @@
 import React from "react";
 import AuthClient from "../../../../../../services/auth/AuthClient";
+import { t } from "../../../../../../services/translation";
 import styles from "./HeaderButtons.module.scss";
 
 export function HeaderButtons(props: HeaderButtonsProps) {
@@ -11,7 +12,7 @@ export function HeaderButtons(props: HeaderButtonsProps) {
 				rel="noopener noreferrer"
 			>
 				<button type="button" className={`${styles.btn} ${styles.btnGt}`}>
-					Show on GarlandTools
+					{t("Show on GarlandTools", "ext_garlandtools")}
 				</button>
 			</a>
 			&nbsp;
@@ -21,7 +22,7 @@ export function HeaderButtons(props: HeaderButtonsProps) {
 				rel="noopener noreferrer"
 			>
 				<button type="button" className={`${styles.btn} ${styles.btnGt}`}>
-					Show on Teamcraft
+					{t("Show on Teamcraft", "ext_teamcraft")}
 				</button>
 			</a>
 			&nbsp;
@@ -29,9 +30,13 @@ export function HeaderButtons(props: HeaderButtonsProps) {
 				if (AuthClient.isLoggedIn) {
 					return (
 						<span>
-							<button className={`${styles.btn} ${styles.btnAddTo}`}>Lists</button>
+							<button className={`${styles.btn} ${styles.btnAddTo}`}>
+								{t("Lists", "generic_lists")}
+							</button>
 							&nbsp;
-							<button className={`${styles.btn} ${styles.btnAddTo}`}>Favourite</button>
+							<button className={`${styles.btn} ${styles.btnAddTo}`}>
+								{t("Favourite", "generic_favourite")}
+							</button>
 						</span>
 					);
 				}

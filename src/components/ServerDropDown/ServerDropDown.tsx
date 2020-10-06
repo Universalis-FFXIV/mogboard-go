@@ -20,14 +20,13 @@ export function ServerDropDown(props: ServerDropDownProps) {
 					} - ${server.locale}`}
 					key={server.dataCenter}
 				>
-					{(getLang() === "zh"
-						? server.worldsZh != null
-							? server.worldsZh
-							: server.worlds
-						: server.worlds
-					).map((world) => (
+					{server.worlds.map((world, i) => (
 						<option value={world} key={world}>
-							{world}
+							{getLang() === "zh"
+								? server.worldsZh != null
+									? server.worldsZh[i]
+									: server.worlds[i]
+								: world}
 						</option>
 					))}
 				</optgroup>
