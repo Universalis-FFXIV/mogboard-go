@@ -1,6 +1,8 @@
+import { DataCenter } from "../models";
+
 export const SERVERS: {
-	dataCenter: string;
-	dataCenterZh?: string;
+	dataCenter: DataCenter;
+	dataCenterZh?: DataCenter;
 	locale: string;
 	worlds: string[];
 	worldsZh?: string[];

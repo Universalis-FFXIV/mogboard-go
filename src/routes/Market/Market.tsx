@@ -5,6 +5,7 @@ import { useSettings, useTitle } from "../../hooks";
 import { getGameDataProvider } from "../../services/api/xivapi";
 import { Item } from "../../services/api/xivapi/models";
 import { ItemHeader } from "./components/ItemHeader";
+import { MarketInfo } from "./components/MarketInfo";
 import { NavBar } from "./components/NavBar";
 
 export function Market() {
@@ -38,6 +39,7 @@ export function Market() {
 			<main>
 				<ItemHeader {...item} />
 				<NavBar viewServer={viewServer} setViewServer={setViewServer} />
+				<MarketInfo server={viewServer} itemId={itemId} />
 			</main>
 		);
 	}

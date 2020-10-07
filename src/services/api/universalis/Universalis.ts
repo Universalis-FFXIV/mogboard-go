@@ -1,12 +1,38 @@
 import { RestClient } from "typed-rest-client";
+import { SERVERS } from "../../../data/SERVERS";
+import { DataCenter } from "../../../models";
 import { buildQueryString } from "../../../util/url";
-import { RecentlyUpdated, TaxRates, UploadHistory, WorldUploadCounts } from "./models";
+import {
+	MarketData,
+	MarketDataWorld,
+	RecentlyUpdated,
+	TaxRates,
+	UploadHistory,
+	WorldUploadCounts,
+} from "./models";
 
 class Universalis {
 	private rest: RestClient;
 
 	constructor() {
 		this.rest = new RestClient(null, "https://universalis.app");
+	}
+
+	async market(worldOrDC: string | number, itemId: number): Promise<MarketData> {
+		const res = await this.rest.get<MarketData>(`/api/${worldOrDC}/${itemId}`);
+		return res.result!;
+	}
+
+	async marketDataCenter(dataCenter: DataCenter, itemId: number): Promise<MarketDataWorld[]> {
+		const data: MarketData[] = [];
+
+		const { worlds } = SERVERS.find((server) => server.dataCenter === dataCenter)!;
+		for (const world of worlds) {
+			const res = await this.rest.get<MarketData>(`/api/${world}/${itemId}`);
+			data.push(res.result!);
+		}
+
+		return data;
 	}
 
 	async recentlyUpdated(): Promise<RecentlyUpdated> {
