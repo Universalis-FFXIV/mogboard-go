@@ -5,6 +5,7 @@ import { DataCenter } from "../../../../models";
 import { MarketDataWorld } from "../../../../services/api/universalis/models";
 import Universalis from "../../../../services/api/universalis/Universalis";
 import { getLang } from "../../../../services/translation";
+import { Cheapest } from "./components/Cheapest";
 import { LastUploadTimes } from "./components/LastUpdateTimes";
 
 export function MarketInfo(props: MarketInfoProps) {
@@ -48,6 +49,7 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 				worldNames={props.worldNames}
 				marketData={props.marketData}
 			/>
+			<Cheapest />
 		</div>
 	);
 }
