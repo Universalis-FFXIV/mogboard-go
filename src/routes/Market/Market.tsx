@@ -11,7 +11,7 @@ export function Market() {
 	const { itemId } = useParams<{ itemId?: string }>();
 	const _itemId = parseInt(itemId || "");
 
-	const [item] = useItemAsync(_itemId);
+	const [item, itemLoadSpeed] = useItemAsync(_itemId);
 
 	useTitle(item == null ? "Universalis" : `${item.Name} - Universalis`);
 
@@ -33,7 +33,7 @@ export function Market() {
 				<ItemContext.Provider value={item}>
 					<ItemHeader />
 					<NavBar viewServer={viewServer} setViewServer={setViewServer} />
-					<MarketInfo server={viewServer} />
+					<MarketInfo server={viewServer} accLoadSpeed={itemLoadSpeed} />
 				</ItemContext.Provider>
 			</main>
 		);

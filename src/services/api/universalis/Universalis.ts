@@ -26,11 +26,17 @@ class Universalis {
 	async marketDataCenter(dataCenter: DataCenter, itemId: number): Promise<MarketDataWorld[]> {
 		const data: MarketDataWorld[] = [];
 
+		const requests: Promise<void>[] = [];
 		const { worlds } = SERVERS.find((server) => server.dataCenter === dataCenter)!;
 		for (const world of worlds) {
-			const res = await this.rest.get<MarketDataWorld>(`/api/${world}/${itemId}`);
-			data.push(res.result!);
+			requests.push(
+				(async () => {
+					const res = await this.rest.get<MarketDataWorld>(`/api/${world}/${itemId}`);
+					data.push(res.result!);
+				})(),
+			);
 		}
+		await Promise.all(requests);
 
 		return data;
 	}

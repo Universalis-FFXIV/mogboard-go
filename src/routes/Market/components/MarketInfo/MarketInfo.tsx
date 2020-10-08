@@ -15,17 +15,21 @@ import { LastUploadTimes } from "./components/LastUpdateTimes";
 import { ItemContext } from "./contexts/ItemContext";
 import worlds from "../../../../data/DataExports/World.json";
 import { Averages } from "./components/Averages";
+import { LoadSpeed } from "./components/LoadSpeed";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
 	const [marketData, setMarketData] = useState<MarketDataWorld[]>([]);
+	const [loadSpeed, setLoadSpeed] = useState(0);
 	const item = useContext(ItemContext)!;
 
 	const dc = SERVERS.find((server) => server.worlds.includes(settings.mogboardServer))!;
 
 	useEffect(() => {
 		(async () => {
+			const startTime = performance.now();
 			const newMarketData = await Universalis.marketDataCenter(dc.dataCenter, item.ID);
+			setLoadSpeed(performance.now() - startTime);
 			setMarketData(newMarketData);
 		})();
 	}, [dc.dataCenter, item.ID]);
@@ -38,6 +42,7 @@ export function MarketInfo(props: MarketInfoProps) {
 					getLang() === "zh" ? (dc.worldsZh != null ? dc.worldsZh : dc.worlds) : dc.worlds
 				}
 				marketData={marketData}
+				loadSpeed={props.accLoadSpeed + loadSpeed}
 			/>
 		);
 	} else {
@@ -47,6 +52,7 @@ export function MarketInfo(props: MarketInfoProps) {
 
 export interface MarketInfoProps {
 	server: string;
+	accLoadSpeed: number;
 }
 
 function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
@@ -114,6 +120,7 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 				ppuHistory={avgHistoryPerUnit}
 				totalHistory={avgHistoryTotal}
 			/>
+			<LoadSpeed loadSpeed={props.loadSpeed} />
 		</div>
 	);
 }
@@ -122,6 +129,7 @@ interface CrossWorldMarketInfoProps {
 	dataCenter: DataCenter;
 	marketData: MarketDataWorld[];
 	worldNames: string[];
+	loadSpeed: number;
 }
 
 function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
