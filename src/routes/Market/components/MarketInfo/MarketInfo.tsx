@@ -4,6 +4,7 @@ import { SERVERS } from "../../../../data/SERVERS";
 import { useSettings } from "../../../../hooks";
 import { DataCenter, WorldNamePartial } from "../../../../models";
 import {
+	MarketBoardHistoryEntry,
 	MarketBoardItemListing,
 	MarketDataWorld,
 } from "../../../../services/api/universalis/models";
@@ -13,6 +14,7 @@ import { Cheapest } from "./components/Cheapest";
 import { LastUploadTimes } from "./components/LastUpdateTimes";
 import { ItemContext } from "./contexts/ItemContext";
 import worlds from "../../../../data/DataExports/World.json";
+import { Averages } from "./components/Averages";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
@@ -39,7 +41,7 @@ export function MarketInfo(props: MarketInfoProps) {
 			/>
 		);
 	} else {
-		return <SingleWorldMarketInfo world={props.server} marketData={marketData} />;
+		return <SingleWorldMarketInfo worldName={props.server} marketData={marketData} />;
 	}
 }
 
@@ -63,6 +65,41 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 	const listingsNq = R.filter(listings, (listing) => !listing.hq);
 	const listingsHq = R.filter(listings, (listing) => listing.hq);
 
+	const avgListingPerUnit = Math.ceil(
+		R.pipe(
+			listings,
+			R.map((listing) => listing.pricePerUnit),
+			R.reduce((acc, next) => acc + next, 0),
+		) / listings.length,
+	);
+	const avgListingTotal = Math.ceil(
+		R.pipe(
+			listings,
+			R.map((listing) => listing.total),
+			R.reduce((acc, next) => acc + next, 0),
+		) / listings.length,
+	);
+
+	const historyEntries = R.pipe(
+		props.marketData,
+		R.map((marketData) => marketData.recentHistory),
+		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardHistoryEntry[]),
+	);
+	const avgHistoryPerUnit = Math.ceil(
+		R.pipe(
+			historyEntries,
+			R.map((entry) => entry.pricePerUnit),
+			R.reduce((acc, next) => acc + next, 0),
+		) / historyEntries.length,
+	);
+	const avgHistoryTotal = Math.ceil(
+		R.pipe(
+			historyEntries,
+			R.map((entry) => entry.total),
+			R.reduce((acc, next) => acc + next, 0),
+		) / historyEntries.length,
+	);
+
 	return (
 		<div>
 			<LastUploadTimes
@@ -71,6 +108,12 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 				marketData={props.marketData}
 			/>
 			<Cheapest listingNq={listingsNq[0]} listingHq={listingsHq[0]} />
+			<Averages
+				ppuListings={avgListingPerUnit}
+				totalListings={avgListingTotal}
+				ppuHistory={avgHistoryPerUnit}
+				totalHistory={avgHistoryTotal}
+			/>
 		</div>
 	);
 }
@@ -82,10 +125,59 @@ interface CrossWorldMarketInfoProps {
 }
 
 function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
-	return <div></div>;
+	const listings = R.pipe(
+		props.marketData,
+		R.map((marketData) => marketData.listings),
+		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardItemListing[]),
+	);
+	const avgListingPerUnit = Math.ceil(
+		R.pipe(
+			listings,
+			R.map((listing) => listing.pricePerUnit),
+			R.reduce((acc, next) => acc + next, 0),
+		) / listings.length,
+	);
+	const avgListingTotal = Math.ceil(
+		R.pipe(
+			listings,
+			R.map((listing) => listing.total),
+			R.reduce((acc, next) => acc + next, 0),
+		) / listings.length,
+	);
+
+	const historyEntries = R.pipe(
+		props.marketData,
+		R.map((marketData) => marketData.recentHistory),
+		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardHistoryEntry[]),
+	);
+	const avgHistoryPerUnit = Math.ceil(
+		R.pipe(
+			historyEntries,
+			R.map((entry) => entry.pricePerUnit),
+			R.reduce((acc, next) => acc + next, 0),
+		) / historyEntries.length,
+	);
+	const avgHistoryTotal = Math.ceil(
+		R.pipe(
+			historyEntries,
+			R.map((entry) => entry.total),
+			R.reduce((acc, next) => acc + next, 0),
+		) / historyEntries.length,
+	);
+
+	return (
+		<div>
+			<Averages
+				ppuListings={avgListingPerUnit}
+				totalListings={avgListingTotal}
+				ppuHistory={avgHistoryPerUnit}
+				totalHistory={avgHistoryTotal}
+			/>
+		</div>
+	);
 }
 
 interface SingleWorldMarketInfoProps {
-	world: string;
+	worldName: string;
 	marketData: MarketDataWorld[];
 }

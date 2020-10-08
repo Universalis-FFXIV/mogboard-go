@@ -1,0 +1,65 @@
+@import "../../../../../../styles/colors";
+
+.crossWorldMarkets {
+	display: flex;
+
+	& > div {
+		flex: 0 1 50%;
+
+		h2 {
+			color: $green-3x;
+			font-size: 14px;
+			font-weight: 500;
+			text-transform: uppercase;
+			margin: 0 0 12px 0;
+		}
+	}
+
+	& > div:first-of-type {
+		padding-right: 10px;
+	}
+
+	& > div:last-of-type {
+		padding-left: 10px;
+	}
+}
+
+.censusBox {
+	background-color: #222;
+	border-radius: 5px;
+	display: flex;
+	box-shadow: 0 1px 3px black;
+
+	h5 {
+		font-size: 14px !important;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin: 0 0 3px 0;
+		color: #555;
+	}
+
+	.avgPrices {
+		font-size: 18px;
+	}
+
+	& > div {
+		flex: 0 1 auto;
+		flex-grow: 1;
+		padding: 10px;
+		text-align: center;
+		font-size: 14px;
+	}
+
+	& > div:last-of-type {
+		border-right: none;
+	}
+}
+
+.flex {
+	display: flex;
+	position: relative;
+
+	.flex100 {
+		flex: 0 1 100%;
+	}
+}
