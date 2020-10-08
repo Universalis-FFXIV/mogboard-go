@@ -66,7 +66,13 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 			),
 		),
 		R.reduce((acc, next) => acc.concat(next), [] as (MarketBoardItemListing & WorldNamePartial)[]),
-		R.sort((a, b) => a.pricePerUnit - b.pricePerUnit),
+		R.sort((a, b) => {
+			let diff = a.pricePerUnit - b.pricePerUnit;
+			if (diff === 0) {
+				diff = a.total - b.total;
+			}
+			return diff;
+		}),
 	);
 	const listingsNq = R.filter(listings, (listing) => !listing.hq);
 	const listingsHq = R.filter(listings, (listing) => listing.hq);
@@ -133,56 +139,7 @@ interface CrossWorldMarketInfoProps {
 }
 
 function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
-	const listings = R.pipe(
-		props.marketData,
-		R.map((marketData) => marketData.listings),
-		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardItemListing[]),
-	);
-	const avgListingPerUnit = Math.ceil(
-		R.pipe(
-			listings,
-			R.map((listing) => listing.pricePerUnit),
-			R.reduce((acc, next) => acc + next, 0),
-		) / listings.length,
-	);
-	const avgListingTotal = Math.ceil(
-		R.pipe(
-			listings,
-			R.map((listing) => listing.total),
-			R.reduce((acc, next) => acc + next, 0),
-		) / listings.length,
-	);
-
-	const historyEntries = R.pipe(
-		props.marketData,
-		R.map((marketData) => marketData.recentHistory),
-		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardHistoryEntry[]),
-	);
-	const avgHistoryPerUnit = Math.ceil(
-		R.pipe(
-			historyEntries,
-			R.map((entry) => entry.pricePerUnit),
-			R.reduce((acc, next) => acc + next, 0),
-		) / historyEntries.length,
-	);
-	const avgHistoryTotal = Math.ceil(
-		R.pipe(
-			historyEntries,
-			R.map((entry) => entry.total),
-			R.reduce((acc, next) => acc + next, 0),
-		) / historyEntries.length,
-	);
-
-	return (
-		<div>
-			<Averages
-				ppuListings={avgListingPerUnit}
-				totalListings={avgListingTotal}
-				ppuHistory={avgHistoryPerUnit}
-				totalHistory={avgHistoryTotal}
-			/>
-		</div>
-	);
+	return <div></div>;
 }
 
 interface SingleWorldMarketInfoProps {
