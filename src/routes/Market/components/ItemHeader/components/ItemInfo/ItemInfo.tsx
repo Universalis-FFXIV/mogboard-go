@@ -1,28 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ITEM_SEARCH_CATEGORY_ICONS } from "../../../../../../data/ITEM_SEARCH_CATEGORY_ICONS";
-import { Item } from "../../../../../../services/api/xivapi/models";
 import { t } from "../../../../../../services/translation";
+import { ItemContext } from "../../../MarketInfo/contexts/ItemContext";
 import styles from "./ItemInfo.module.scss";
 
-export function ItemInfo(props: Item) {
+export function ItemInfo() {
+	const item = useContext(ItemContext)!;
+
 	return (
 		<div>
 			<div className={styles.itemInfo}>
-				<h1 className={`rarity-${props.Rarity}`}>
-					<span>{props.LevelItem}</span>
-					&nbsp;{props.Name}
+				<h1 className={`rarity-${item.Rarity}`}>
+					<span>{item.LevelItem}</span>
+					&nbsp;{item.Name}
 				</h1>
 			</div>
 			<div className={styles.itemInfo2}>
 				<div>
-					<i className={`xiv-${ITEM_SEARCH_CATEGORY_ICONS[props.ItemSearchCategory.ID]}`} />
-					&nbsp;{props.ItemKind.Name}
-					&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{props.ItemUICategory.Name}
-					&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+					<i className={`xiv-${ITEM_SEARCH_CATEGORY_ICONS[item.ItemSearchCategory.ID]}`} />
+					&nbsp;{item.ItemKind.Name}
+					{"   "}-{"   "}
+					{item.ItemUICategory.Name}
+					{"   "}-{"   "}
 					{t("Stack:", "generic_stack_size_colon")}
-					&nbsp;{props.StackSize}
+					&nbsp;{item.StackSize}
 				</div>
-				<div>{props.Description}</div>
+				<div>{item.Description}</div>
 			</div>
 		</div>
 	);

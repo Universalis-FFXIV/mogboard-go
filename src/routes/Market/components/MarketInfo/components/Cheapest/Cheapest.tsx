@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getLocale } from "../../../../../../services/translation";
+import { ItemContext } from "../../contexts/ItemContext";
 import styles from "./Cheapest.module.scss";
 
-export function Cheapest() {
+export function Cheapest(props: CheapestProps) {
+	const item = useContext(ItemContext)!;
+	const canBeHq = item.CanBeHq === 1;
+
 	return (
 		<div className={styles.crossWorldMarkets}>
-			<Price quality="HQ" />
-			<Price
-				quality="NQ"
-				listing={{
-					pricePerUnit: 4200,
-					quantity: 1,
-					total: 4200,
-					worldName: "Malboro",
-				}}
-			/>
+			<Price quality="HQ" canBeHq={canBeHq} listing={props.listingHq} />
+			<Price quality="NQ" canBeHq={canBeHq} listing={props.listingNq} />
 		</div>
 	);
+}
+
+export interface CheapestProps {
+	listingNq: {
+		pricePerUnit: number;
+		quantity: number;
+		total: number;
+		worldName: string;
+	};
+	listingHq?: {
+		pricePerUnit: number;
+		quantity: number;
+		total: number;
+		worldName: string;
+	};
 }
 
 function Price(props: PriceProps) {
@@ -24,7 +35,14 @@ function Price(props: PriceProps) {
 		return (
 			<div>
 				<h2>Cheapest {props.quality}</h2>
-				<p>Item has no {props.quality} variant.</p>
+				<p>No {props.quality} for sale.</p>
+			</div>
+		);
+	} else if (props.quality === "HQ" && !props.canBeHq) {
+		return (
+			<div>
+				<h2>Cheapest HQ</h2>
+				<p>Item has no HQ variant.</p>
 			</div>
 		);
 	} else {
@@ -57,5 +75,6 @@ interface PriceProps {
 		total: number;
 		worldName: string;
 	};
+	canBeHq: boolean;
 	quality: "NQ" | "HQ";
 }

@@ -6,6 +6,7 @@ import { getGameDataProvider } from "../../services/api/xivapi";
 import { Item } from "../../services/api/xivapi/models";
 import { ItemHeader } from "./components/ItemHeader";
 import { MarketInfo } from "./components/MarketInfo";
+import { ItemContext } from "./components/MarketInfo/contexts/ItemContext";
 import { NavBar } from "./components/NavBar";
 
 export function Market() {
@@ -37,9 +38,11 @@ export function Market() {
 	} else {
 		return (
 			<main>
-				<ItemHeader {...item} />
-				<NavBar viewServer={viewServer} setViewServer={setViewServer} />
-				<MarketInfo server={viewServer} itemId={itemId} />
+				<ItemContext.Provider value={item}>
+					<ItemHeader />
+					<NavBar viewServer={viewServer} setViewServer={setViewServer} />
+					<MarketInfo server={viewServer} />
+				</ItemContext.Provider>
 			</main>
 		);
 	}

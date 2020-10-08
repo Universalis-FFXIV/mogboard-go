@@ -1,4 +1,6 @@
 export interface Item {
+	CanBeHq: 1 | 0;
+	Description: string;
 	ID: number;
 	ItemKind: {
 		ID: number;
@@ -13,7 +15,6 @@ export interface Item {
 	};
 	LevelItem: number;
 	Name: string;
-	Description: string;
 	Rarity: number;
 	StackSize: number;
 }
