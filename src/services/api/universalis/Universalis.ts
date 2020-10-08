@@ -24,11 +24,11 @@ class Universalis {
 	}
 
 	async marketDataCenter(dataCenter: DataCenter, itemId: number): Promise<MarketDataWorld[]> {
-		const data: MarketData[] = [];
+		const data: MarketDataWorld[] = [];
 
 		const { worlds } = SERVERS.find((server) => server.dataCenter === dataCenter)!;
 		for (const world of worlds) {
-			const res = await this.rest.get<MarketData>(`/api/${world}/${itemId}`);
+			const res = await this.rest.get<MarketDataWorld>(`/api/${world}/${itemId}`);
 			data.push(res.result!);
 		}
 

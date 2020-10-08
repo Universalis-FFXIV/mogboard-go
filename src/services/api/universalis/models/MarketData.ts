@@ -7,8 +7,8 @@ export type MarketDataDataCenter = MarketDataBasic & DataCenterPartial;
 interface MarketDataBasic {
 	itemID: number;
 	lastUploadTime: number;
-	listings: Array<any>;
-	recentHistory: Array<any>;
+	listings: Array<MarketBoardItemListing>;
+	recentHistory: Array<MarketBoardHistoryEntry>;
 	regularSaleVelocity: number;
 	nqSaleVelocity: number;
 	hqSaleVelocity: number;
@@ -21,9 +21,38 @@ interface MarketDataBasic {
 }
 
 interface WorldPartial {
-	worldID?: number;
+	worldID: number;
 }
 
 interface DataCenterPartial {
-	dcName?: DataCenter;
+	dcName: DataCenter;
+}
+
+export interface MarketBoardItemListing {
+	creatorID: string;
+	lastReviewTime: number;
+	listingID: string;
+	pricePerUnit: number;
+	quantity: number;
+	retainerID: string;
+	sellerID: string;
+	stainID: number;
+	creatorName: string;
+	hq: boolean;
+	isCrafted: boolean;
+	materia: [];
+	onMannequin: boolean;
+	retainerCity: number;
+	retainerName: string;
+	total: number;
+}
+
+export interface MarketBoardHistoryEntry {
+	hq: boolean;
+	pricePerUnit: number;
+	quantity: number;
+	timestamp: number;
+	worldName: string;
+	buyerName: string;
+	total: number;
 }

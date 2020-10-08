@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
+import * as R from "remeda";
 import { SERVERS } from "../../../../data/SERVERS";
 import { useSettings } from "../../../../hooks";
-import { DataCenter } from "../../../../models";
-import { MarketDataWorld } from "../../../../services/api/universalis/models";
+import { DataCenter, WorldNamePartial } from "../../../../models";
+import {
+	MarketBoardItemListing,
+	MarketDataWorld,
+} from "../../../../services/api/universalis/models";
 import Universalis from "../../../../services/api/universalis/Universalis";
 import { getLang } from "../../../../services/translation";
 import { Cheapest } from "./components/Cheapest";
 import { LastUploadTimes } from "./components/LastUpdateTimes";
 import { ItemContext } from "./contexts/ItemContext";
+import worlds from "../../../../data/DataExports/World.json";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
@@ -43,6 +48,21 @@ export interface MarketInfoProps {
 }
 
 function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
+	const listings = R.pipe(
+		props.marketData,
+		R.map((marketData) =>
+			R.map(marketData.listings, (listing) =>
+				R.merge(listing, {
+					worldName: worlds.find((world) => world.ID === marketData.worldID)!.Name,
+				}),
+			),
+		),
+		R.reduce((acc, next) => acc.concat(next), [] as (MarketBoardItemListing & WorldNamePartial)[]),
+		R.sort((a, b) => a.pricePerUnit - b.pricePerUnit),
+	);
+	const listingsNq = R.filter(listings, (listing) => !listing.hq);
+	const listingsHq = R.filter(listings, (listing) => listing.hq);
+
 	return (
 		<div>
 			<LastUploadTimes
@@ -50,14 +70,7 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 				worldNames={props.worldNames}
 				marketData={props.marketData}
 			/>
-			<Cheapest
-				listingNq={{
-					pricePerUnit: 4200,
-					quantity: 1,
-					total: 4200,
-					worldName: "Malboro",
-				}}
-			/>
+			<Cheapest listingNq={listingsNq[0]} listingHq={listingsHq[0]} />
 		</div>
 	);
 }

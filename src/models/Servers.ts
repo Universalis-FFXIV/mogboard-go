@@ -13,3 +13,7 @@ export type DataCenter =
 	| "莫古力"
 	| "MaoXiaoPang"
 	| "猫小胖";
+
+export interface WorldNamePartial {
+	worldName: string;
+}

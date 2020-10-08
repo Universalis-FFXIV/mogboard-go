@@ -27,7 +27,7 @@ export function App() {
 				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route path="/market/:_itemId" component={Market} />
+					<Route path="/market/:itemId" component={Market} />
 					<Route path="/404" component={NotFound} />
 					<Route path="/:error" component={ErrorPage} />
 					<Route path="*">

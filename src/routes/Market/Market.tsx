@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { SERVERS } from "../../data/SERVERS";
-import { useSettings, useTitle } from "../../hooks";
-import { getGameDataProvider } from "../../services/api/xivapi";
-import { Item } from "../../services/api/xivapi/models";
+import { useItemAsync, useSettings, useTitle } from "../../hooks";
 import { ItemHeader } from "./components/ItemHeader";
 import { MarketInfo } from "./components/MarketInfo";
 import { ItemContext } from "./components/MarketInfo/contexts/ItemContext";
 import { NavBar } from "./components/NavBar";
 
 export function Market() {
-	const { _itemId } = useParams<{ _itemId?: string }>();
-	const itemId = parseInt(_itemId || "");
+	const { itemId } = useParams<{ itemId?: string }>();
+	const _itemId = parseInt(itemId || "");
 
-	const [item, setItem] = useState<Item | null>(null);
-	useEffect(() => {
-		(async () => {
-			const _item = await getGameDataProvider().item(itemId);
-			setItem(_item);
-		})();
-	}, [itemId]);
+	const [item] = useItemAsync(_itemId);
 
 	useTitle(item == null ? "Universalis" : `${item.Name} - Universalis`);
 
@@ -29,7 +21,7 @@ export function Market() {
 		settings.mogboardHomeWorld === "yes" ? settings.mogboardServer : dc.dataCenter,
 	);
 
-	if (_itemId == null || isNaN(itemId)) {
+	if (itemId == null || isNaN(_itemId)) {
 		return <Redirect to="/404" />;
 	}
 

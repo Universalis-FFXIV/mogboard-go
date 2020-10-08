@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { WorldNamePartial } from "../../../../../../models";
+import { MarketBoardItemListing } from "../../../../../../services/api/universalis/models";
 import { getLocale } from "../../../../../../services/translation";
 import { ItemContext } from "../../contexts/ItemContext";
 import styles from "./Cheapest.module.scss";
@@ -16,33 +18,23 @@ export function Cheapest(props: CheapestProps) {
 }
 
 export interface CheapestProps {
-	listingNq: {
-		pricePerUnit: number;
-		quantity: number;
-		total: number;
-		worldName: string;
-	};
-	listingHq?: {
-		pricePerUnit: number;
-		quantity: number;
-		total: number;
-		worldName: string;
-	};
+	listingNq: MarketBoardItemListing & WorldNamePartial;
+	listingHq?: MarketBoardItemListing & WorldNamePartial;
 }
 
 function Price(props: PriceProps) {
-	if (props.listing == null) {
-		return (
-			<div>
-				<h2>Cheapest {props.quality}</h2>
-				<p>No {props.quality} for sale.</p>
-			</div>
-		);
-	} else if (props.quality === "HQ" && !props.canBeHq) {
+	if (props.quality === "HQ" && !props.canBeHq) {
 		return (
 			<div>
 				<h2>Cheapest HQ</h2>
 				<p>Item has no HQ variant.</p>
+			</div>
+		);
+	} else if (props.listing == null) {
+		return (
+			<div>
+				<h2>Cheapest {props.quality}</h2>
+				<p>No {props.quality} for sale.</p>
 			</div>
 		);
 	} else {
@@ -69,12 +61,7 @@ function Price(props: PriceProps) {
 }
 
 interface PriceProps {
-	listing?: {
-		pricePerUnit: number;
-		quantity: number;
-		total: number;
-		worldName: string;
-	};
+	listing?: MarketBoardItemListing & WorldNamePartial;
 	canBeHq: boolean;
 	quality: "NQ" | "HQ";
 }
