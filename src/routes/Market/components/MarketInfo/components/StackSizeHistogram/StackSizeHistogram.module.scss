@@ -1,0 +1,20 @@
+@import "../../../../../../styles/colors";
+
+.histogram {
+	h6 {
+		font-size: 15px;
+		font-weight: 600;
+		color: $table-color-3x;
+		text-shadow: none;
+		text-transform: uppercase;
+	}
+}
+
+.highcharts {
+	width: 100%;
+	text-shadow: none;
+	border-radius: 6px;
+	overflow: hidden;
+	box-shadow: 0 1px 2px black;
+	margin-bottom: 20px;
+}

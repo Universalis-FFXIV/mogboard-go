@@ -16,6 +16,7 @@ import { ItemContext } from "./contexts/ItemContext";
 import worlds from "../../../../data/DataExports/World.json";
 import { Averages } from "./components/Averages";
 import { LoadSpeed } from "./components/LoadSpeed";
+import { StackSizeHistogram } from "./components/StackSizeHistogram";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
@@ -120,6 +121,7 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 				marketData={props.marketData}
 			/>
 			<Cheapest listingNq={listingsNq[0]} listingHq={listingsHq[0]} />
+			<StackSizeHistogram marketData={props.marketData} serverName={props.dataCenter} />
 			<Averages
 				ppuListings={avgListingPerUnit}
 				totalListings={avgListingTotal}
@@ -139,7 +141,11 @@ interface CrossWorldMarketInfoProps {
 }
 
 function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
-	return <div></div>;
+	return (
+		<div>
+			<StackSizeHistogram marketData={props.marketData} serverName={props.worldName} />
+		</div>
+	);
 }
 
 interface SingleWorldMarketInfoProps {
