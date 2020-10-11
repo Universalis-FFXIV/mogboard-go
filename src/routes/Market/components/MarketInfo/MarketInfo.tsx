@@ -141,9 +141,14 @@ interface CrossWorldMarketInfoProps {
 }
 
 function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
+	const { ID } = worlds.find((world) => world.Name === props.worldName)!;
+
 	return (
 		<div>
-			<StackSizeHistogram marketData={props.marketData} serverName={props.worldName} />
+			<StackSizeHistogram
+				marketData={[props.marketData.find((md) => md.worldID === ID)!]}
+				serverName={props.worldName}
+			/>
 		</div>
 	);
 }

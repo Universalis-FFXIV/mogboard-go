@@ -126,11 +126,7 @@ function buildChartOptions(
 			text: "",
 		},
 		tooltip: {
-			backgroundColor: "rgba(0, 0, 0, 0.9)",
 			pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b><br>Count: <b>{point.y}</b>",
-			style: {
-				color: "#ffffff",
-			},
 		},
 	};
 }

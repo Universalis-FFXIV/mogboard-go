@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { CookiesProvider } from "react-cookie";
+import "./highcharts";
 import "./reset.scss";
 import "./index.scss";
 import "./styles/rarity.scss";
