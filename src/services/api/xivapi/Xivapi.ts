@@ -45,6 +45,7 @@ export class Xivapi {
 				columns:
 					"ID,Icon,Name,LevelItem,Rarity,ItemSearchCategory.Name,ItemSearchCategory.ID,ItemKind.Name",
 				string: term.trim(),
+				string_algo: "fuzzy",
 				limit: "100",
 				sort_field: "LevelItem",
 				sort_order: "desc",
