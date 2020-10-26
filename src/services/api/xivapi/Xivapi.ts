@@ -49,6 +49,9 @@ export class Xivapi {
 			res = fuzzyRes;
 		} else {
 			res.result.Results = res.result.Results.concat(fuzzyRes.result?.Results || []);
+			res.result.Pagination.Results += fuzzyRes.result?.Pagination.Results || 0;
+			res.result.Pagination.ResultsTotal += fuzzyRes.result?.Pagination.ResultsTotal || 0;
+			res.result.SpeedMs += fuzzyRes.result?.SpeedMs || 0;
 		}
 
 		return [res.result?.Results || [], res.result?.Pagination.ResultsTotal || 0];
