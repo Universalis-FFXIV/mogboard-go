@@ -1,6 +1,6 @@
 import { RestClient } from "typed-rest-client";
 import { buildQueryString } from "../../../util/url";
-import { Item, SearchResultItem } from "./models";
+import { Item, SearchResponse, SearchResultItem } from "./models";
 
 export class Xivapi {
 	private rest: RestClient;
@@ -26,32 +26,30 @@ export class Xivapi {
 		term: string,
 		language?: string | null,
 	): Promise<[SearchResultItem[], TotalResults]> {
-		const res = await this.rest.get<{
-			Pagination: {
-				Page: number;
-				PageNext: number;
-				PagePrev: number;
-				PageTotal: number;
-				Results: number;
-				ResultsPerPage: number;
-				ResultsTotal: number;
-			};
-			Results: SearchResultItem[];
-			SpeedMs: number;
-		}>(
-			`/search${buildQueryString({
-				indexes: "item",
-				filters: "ItemSearchCategory.ID>=1",
-				columns:
-					"ID,Icon,Name,LevelItem,Rarity,ItemSearchCategory.Name,ItemSearchCategory.ID,ItemKind.Name",
-				string: term.trim(),
-				string_algo: "fuzzy",
-				limit: "100",
-				sort_field: "LevelItem",
-				sort_order: "desc",
-				language: language || "en",
-			})}`,
-		);
+		const params1 = {
+			indexes: "item",
+			filters: "ItemSearchCategory.ID>=1",
+			columns:
+				"ID,Icon,Name,LevelItem,Rarity,ItemSearchCategory.Name,ItemSearchCategory.ID,ItemKind.Name",
+			string: term.trim(),
+			limit: "100",
+			sort_field: "LevelItem",
+			sort_order: "desc",
+			language: language || "en",
+		};
+
+		const params2 = {
+			...params1,
+			string_algo: "fuzzy",
+		};
+
+		let res = await this.rest.get<SearchResponse>(`/search${buildQueryString(params1)}`);
+		const fuzzyRes = await this.rest.get<SearchResponse>(`/search${buildQueryString(params2)}`);
+		if (!res.result) {
+			res = fuzzyRes;
+		} else {
+			res.result.Results = res.result.Results.concat(fuzzyRes.result?.Results || []);
+		}
 
 		return [res.result?.Results || [], res.result?.Pagination.ResultsTotal || 0];
 	}
