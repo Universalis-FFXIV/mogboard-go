@@ -62,4 +62,18 @@
 	.flex100 {
 		flex: 0 1 100%;
 	}
+
+	.flex50 {
+		flex: 0 1 50%;
+	}
+}
+
+.priceHq {
+	color: #dddc87;
+}
+
+.hqIcon {
+	display: inline-table;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
 }
