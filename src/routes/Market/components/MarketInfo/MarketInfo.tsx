@@ -17,6 +17,7 @@ import worlds from "../../../../data/DataExports/World.json";
 import { Averages } from "./components/Averages";
 import { LoadSpeed } from "./components/LoadSpeed";
 import { StackSizeHistogram } from "./components/StackSizeHistogram";
+import { avgPpu, avgTotal } from "../../../../util/marketData";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
@@ -143,24 +144,4 @@ function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
 interface SingleWorldMarketInfoProps {
 	worldName: string;
 	marketData: MarketDataWorld[];
-}
-
-function avgPpu(entries: (MarketBoardItemListing | MarketBoardHistoryEntry)[]): number {
-	return Math.ceil(
-		R.pipe(
-			entries,
-			R.map((entry) => entry.pricePerUnit),
-			R.reduce((acc, next) => acc + next, 0),
-		) / entries.length,
-	);
-}
-
-function avgTotal(entries: (MarketBoardItemListing | MarketBoardHistoryEntry)[]): number {
-	return Math.ceil(
-		R.pipe(
-			entries,
-			R.map((entry) => entry.total),
-			R.reduce((acc, next) => acc + next, 0),
-		) / entries.length,
-	);
 }
