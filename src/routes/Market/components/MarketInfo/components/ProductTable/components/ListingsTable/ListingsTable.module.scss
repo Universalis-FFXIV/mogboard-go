@@ -1,0 +1,109 @@
+@import "../../../../../../../../styles/colors";
+
+.productTable {
+	box-shadow: 0 1px 2px 1px black;
+	border-radius: 4px;
+	overflow: hidden;
+
+	table {
+		background: #272a33;
+		background: -moz-linear-gradient(top, #272a33 0%, #1d2027 100%);
+		background: -webkit-linear-gradient(top, #272a33 0%, #1d2027 100%);
+		background: linear-gradient(to bottom, #272a33 0%, #1d2027 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#272a33', endColorstr='#1d2027',GradientType=0 );
+
+		thead {
+			background-color: $table-color;
+			border-bottom: 1px solid black;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+		}
+
+		tr {
+			transition: 100ms;
+
+			&:last-of-type {
+				td {
+					border-bottom: none;
+				}
+			}
+		}
+
+		th {
+			font-size: 13px;
+			font-weight: 600;
+			color: white;
+			text-shadow: none;
+			text-transform: uppercase;
+
+			padding: 8px;
+			vertical-align: middle;
+
+			border-bottom: 1px solid $table-color;
+		}
+
+		td {
+			border-right: 1px solid $table-color-2x;
+			border-bottom: 1px solid $table-color-2x;
+
+			padding: 8px;
+			font-size: 14px;
+			vertical-align: middle;
+
+			line-height: 20px;
+
+			&:last-of-type {
+				border-right: none;
+			}
+		}
+	}
+}
+
+.hqIcon {
+	height: 14px;
+	margin-top: -2px;
+	vertical-align: middle;
+}
+
+.priceCityFlag {
+	height: 20px;
+	border-radius: 10px;
+	display: inline-table;
+	vertical-align: middle;
+	margin: -7px 0 -5px 4px;
+}
+
+.priceNum {
+	color: #666;
+	text-shadow: none;
+}
+
+.priceServer {
+	font-weight: 600;
+}
+
+.priceCurrent {
+	font-size: 15px !important;
+	color: #dddc87;
+	text-align: right;
+}
+
+.priceQty {
+	color: #aaa;
+	font-weight: 600;
+}
+
+.priceTotal {
+	font-size: 15px !important;
+	color: #afffa1;
+	text-align: right;
+}
+
+.priceMisc {
+	text-align: right;
+	color: #aaa;
+	font-size: 12px !important;
+}
+
+.tac {
+	text-align: center !important;
+}

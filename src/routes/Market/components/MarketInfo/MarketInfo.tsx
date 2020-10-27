@@ -18,6 +18,9 @@ import { Averages } from "./components/Averages";
 import { LoadSpeed } from "./components/LoadSpeed";
 import { StackSizeHistogram } from "./components/StackSizeHistogram";
 import { avgPpu, avgTotal } from "../../../../util/marketData";
+import { ProductTable } from "./components/ProductTable";
+import styles from "./MarketInfo.module.scss";
+import hqIcon from "../../../../images/hq.png";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
@@ -106,6 +109,32 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 			/>
 			<Cheapest listingNq={listingsNq[0]} listingHq={listingsHq[0]} />
 			<StackSizeHistogram marketData={props.marketData} serverName={props.dataCenter} />
+
+			<div style={{ display: "flex" }}>
+				<div style={{ paddingRight: "10px", flex: "0 1 50%" }}>
+					<h6 className={styles.tableTitle}>
+						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> HQ Prices (Includes 5%
+						GST)
+					</h6>
+					<ProductTable listings={listingsHq.slice(0, 10)} />
+					<br />
+					<h6 className={styles.tableTitle}>NQ Prices (Includes 5% GST)</h6>
+					<ProductTable listings={listingsNq.slice(0, 10)} />
+				</div>
+				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
+					<h6 className={styles.tableTitle}>
+						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> HQ Purchase History
+					</h6>
+					<ProductTable history={historyEntriesHq.slice(0, 10)} />
+					<br />
+					<h6 className={styles.tableTitle}>NQ Purchase History</h6>
+					<ProductTable history={historyEntriesNq.slice(0, 10)} />
+				</div>
+			</div>
+
+			<br />
+			<br />
+
 			<Averages
 				ppuListingsNq={avgListingPerUnitNq}
 				totalListingsNq={avgListingTotalNq}
@@ -131,12 +160,48 @@ interface CrossWorldMarketInfoProps {
 function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
 	const { ID } = worlds.find((world) => world.Name === props.worldName)!;
 
+	const listings = R.pipe(
+		props.marketData,
+		R.map((marketData) =>
+			R.map(marketData.listings, (listing) =>
+				R.merge(listing, {
+					worldName: worlds.find((world) => world.ID === marketData.worldID)!.Name,
+				}),
+			),
+		),
+		R.reduce((acc, next) => acc.concat(next), [] as (MarketBoardItemListing & WorldNamePartial)[]),
+		R.filter((listing) => listing.worldName === props.worldName),
+		R.sort((a, b) => {
+			let diff = a.pricePerUnit - b.pricePerUnit;
+			if (diff === 0) {
+				diff = a.total - b.total;
+			}
+			return diff;
+		}),
+	);
+
+	const historyEntries = R.pipe(
+		props.marketData,
+		R.map((marketData) => marketData.recentHistory),
+		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardHistoryEntry[]),
+		R.filter((entry) => entry.worldName === props.worldName),
+	);
+
 	return (
 		<div>
 			<StackSizeHistogram
 				marketData={[props.marketData.find((md) => md.worldID === ID)!]}
 				serverName={props.worldName}
 			/>
+
+			<div style={{ display: "flex" }}>
+				<div style={{ paddingRight: "10px", flex: "0 1 50%" }}>
+					<ProductTable listings={listings} />
+				</div>
+				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
+					<ProductTable history={historyEntries} />
+				</div>
+			</div>
 		</div>
 	);
 }

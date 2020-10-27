@@ -1,0 +1,15 @@
+@import "../../../../styles/colors";
+
+.tableTitle {
+	font-size: 15px;
+	font-weight: 600;
+	color: $table-color-3x;
+	text-shadow: none;
+	text-transform: uppercase;
+}
+
+.hqIcon {
+	display: inline-table;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}

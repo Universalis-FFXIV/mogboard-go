@@ -1,5 +1,6 @@
 import printf from "printf";
 import React, { useEffect, useState } from "react";
+import { CITY_ICONS } from "../../../../../../data/CITY_ICONS";
 import { useSettings } from "../../../../../../hooks";
 import { TaxRates } from "../../../../../../services/api/universalis/models";
 import Universalis from "../../../../../../services/api/universalis/Universalis";
@@ -36,22 +37,22 @@ export function TaxRatesPanel() {
 				<br />
 				<div className={styles.flex}>
 					<div className={styles.flex50}>
-						<img src="https://xivapi.com/i/060000/060881.png" alt="" /> {taxRates["Limsa Lominsa"]}%
+						<img src={`https://xivapi.com${CITY_ICONS[1]}`} alt="" /> {taxRates["Limsa Lominsa"]}%
 					</div>
 					<div className={styles.flex50}>
-						<img src="https://xivapi.com/i/060000/060882.png" alt="" /> {taxRates.Gridania}%
+						<img src={`https://xivapi.com${CITY_ICONS[2]}`} alt="" /> {taxRates.Gridania}%
 					</div>
 					<div className={styles.flex50}>
-						<img src="https://xivapi.com/i/060000/060883.png" alt="" /> {taxRates["Ul'dah"]}%
+						<img src={`https://xivapi.com${CITY_ICONS[3]}`} alt="" /> {taxRates["Ul'dah"]}%
 					</div>
 					<div className={styles.flex50}>
-						<img src="https://xivapi.com/i/060000/060884.png" alt="" /> {taxRates.Ishgard}%
+						<img src={`https://xivapi.com${CITY_ICONS[4]}`} alt="" /> {taxRates.Ishgard}%
 					</div>
 					<div className={styles.flex50}>
-						<img src="https://xivapi.com/i/060000/060885.png" alt="" /> {taxRates.Kugane}%
+						<img src={`https://xivapi.com${CITY_ICONS[7]}`} alt="" /> {taxRates.Kugane}%
 					</div>
 					<div className={styles.flex50}>
-						<img src="https://xivapi.com/i/060000/060886.png" alt="" /> {taxRates.Crystarium}%
+						<img src={`https://xivapi.com${CITY_ICONS[10]}`} alt="" /> {taxRates.Crystarium}%
 					</div>
 				</div>
 			</div>
