@@ -48,9 +48,13 @@ export class Xivapi {
 		if (!res.result) {
 			res = fuzzyRes;
 		} else {
-			res.result.Results = res.result.Results.concat(fuzzyRes.result?.Results || []);
-			res.result.Pagination.Results += fuzzyRes.result?.Pagination.Results || 0;
-			res.result.Pagination.ResultsTotal += fuzzyRes.result?.Pagination.ResultsTotal || 0;
+			res.result.Results = res.result.Results.concat(fuzzyRes.result?.Results || []).filter(
+				(result, i, arr) => {
+					const firstI = arr.reverse().findIndex((item) => item.ID === result.ID);
+					return i === firstI;
+				},
+			);
+			res.result.Pagination.Results += res.result.Results.length;
 			res.result.SpeedMs += fuzzyRes.result?.SpeedMs || 0;
 		}
 
