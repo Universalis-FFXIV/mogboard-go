@@ -49,7 +49,7 @@ export class Xivapi {
 			res = fuzzyRes;
 		} else {
 			fuzzyRes.result?.Results.forEach((result) => {
-				if (res.result!.Results.find((item) => item.ID === result.ID)) {
+				if (!res.result!.Results.find((item) => item.ID === result.ID)) {
 					res.result!.Results.push(result);
 				}
 			});
