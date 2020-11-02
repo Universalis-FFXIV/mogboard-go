@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import { WorldNamePartial } from "../../../../../../../../models";
 import { MarketBoardItemListing } from "../../../../../../../../services/api/universalis/models";
 import styles from "../../ProductTable.module.scss";
@@ -82,10 +82,13 @@ export function ListingsTable(props: ListingsTableProps) {
 		[],
 	);
 
-	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-		columns,
-		data,
-	});
+	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+		{
+			columns,
+			data,
+		},
+		useSortBy,
+	);
 
 	return (
 		<div className={styles.productTable}>
@@ -94,7 +97,10 @@ export function ListingsTable(props: ListingsTableProps) {
 					{headerGroups.map((headerGroup) => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
 							{headerGroup.headers.map((column, i) => {
-								const headerProps = column.getHeaderProps();
+								const headerProps = column.getHeaderProps(
+									(column as any) /* Escape hatch for incomplete TS typings in the lib */
+										.getSortByToggleProps(),
+								);
 								if (i === 0) {
 									headerProps.className = styles.tac;
 								}

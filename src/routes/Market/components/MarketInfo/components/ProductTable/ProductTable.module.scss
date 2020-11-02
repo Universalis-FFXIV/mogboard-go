@@ -39,6 +39,13 @@
 			vertical-align: middle;
 
 			border-bottom: 1px solid $table-color;
+
+			&:hover {
+				background-color: $table-color-3x;
+				position: relative;
+				box-shadow: 0 0 5px black;
+				cursor: pointer;
+			}
 		}
 
 		td {

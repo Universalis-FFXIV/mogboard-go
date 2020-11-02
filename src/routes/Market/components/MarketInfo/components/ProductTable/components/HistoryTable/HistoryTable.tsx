@@ -3,7 +3,7 @@ import { MarketBoardHistoryEntry } from "../../../../../../../../services/api/un
 import styles from "../../ProductTable.module.scss";
 import hqIcon from "../../../../../../../../images/hq.png";
 import { dateTimeToString } from "../../../../../../../../util/time";
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 
 export function HistoryTable(props: HistoryTableProps) {
 	const data = useMemo(
@@ -67,10 +67,13 @@ export function HistoryTable(props: HistoryTableProps) {
 		[],
 	);
 
-	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-		columns,
-		data,
-	});
+	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+		{
+			columns,
+			data,
+		},
+		useSortBy,
+	);
 
 	return (
 		<div className={styles.productTable}>
@@ -79,7 +82,10 @@ export function HistoryTable(props: HistoryTableProps) {
 					{headerGroups.map((headerGroup) => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
 							{headerGroup.headers.map((column, i) => {
-								const headerProps = column.getHeaderProps();
+								const headerProps = column.getHeaderProps(
+									(column as any) /* Escape hatch for incomplete TS typings in the lib */
+										.getSortByToggleProps(),
+								);
 								if (i === 0) {
 									headerProps.className = styles.tac;
 								}
