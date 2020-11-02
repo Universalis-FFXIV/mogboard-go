@@ -4,11 +4,14 @@ import styles from "../../ProductTable.module.scss";
 import hqIcon from "../../../../../../../../images/hq.png";
 import { dateTimeToString } from "../../../../../../../../util/time";
 import { useSortBy, useTable } from "react-table";
+import { percentDifference } from "../../../../../../../../util/math";
 
 export function HistoryTable(props: HistoryTableProps) {
 	const data = useMemo(
 		() =>
 			props.history.map((entry, i) => {
+				const percDiff = Math.floor(percentDifference(entry.pricePerUnit, props.averagePpu));
+
 				return {
 					key: i + 1,
 					worldName: entry.worldName,
@@ -16,12 +19,12 @@ export function HistoryTable(props: HistoryTableProps) {
 					ppu: entry.pricePerUnit,
 					quantity: entry.quantity,
 					total: entry.total,
-					percDiff: <></>,
+					percDiff: `${percDiff > 0 ? "+" + percDiff : percDiff.toString()}%`,
 					buyerName: entry.buyerName,
 					date: dateTimeToString(entry.timestamp * 1000),
 				};
 			}) as TableSchema[],
-		[props.history],
+		[props.averagePpu, props.history],
 	);
 
 	const columns = useMemo(
@@ -117,6 +120,16 @@ export function HistoryTable(props: HistoryTableProps) {
 										case 5:
 											cellProps.className = styles.priceTotal;
 											break;
+										case 6:
+											const cellValNumber = parseInt(cell.value.replace(/[^-\d]/, ""));
+											if (cellValNumber > 20) {
+												cellProps.className = styles.priceDiffBad;
+											} else if (cellValNumber < -14) {
+												cellProps.className = styles.priceDiffGood;
+											} else {
+												cellProps.className = styles.priceDiffOk;
+											}
+											break;
 										default:
 											cellProps.className = styles.priceMisc;
 											break;
@@ -135,6 +148,7 @@ export function HistoryTable(props: HistoryTableProps) {
 export interface HistoryTableProps {
 	listings?: never;
 	history: MarketBoardHistoryEntry[];
+	averagePpu: number;
 }
 
 interface TableSchema {
@@ -144,7 +158,7 @@ interface TableSchema {
 	ppu: number;
 	quantity: number;
 	total: number;
-	percDiff: JSX.Element;
+	percDiff: string;
 	buyerName: string;
 	date: string;
 }

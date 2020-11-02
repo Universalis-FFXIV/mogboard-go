@@ -5,11 +5,14 @@ import { MarketBoardItemListing } from "../../../../../../../../services/api/uni
 import styles from "../../ProductTable.module.scss";
 import hqIcon from "../../../../../../../../images/hq.png";
 import { CITY_ICONS } from "../../../../../../../../data/CITY_ICONS";
+import { percentDifference } from "../../../../../../../../util/math";
 
 export function ListingsTable(props: ListingsTableProps) {
 	const data = useMemo(
 		() =>
 			props.listings.map((listing, i) => {
+				const percDiff = Math.floor(percentDifference(listing.pricePerUnit, props.averagePpu));
+
 				return {
 					key: i + 1,
 					worldName: listing.worldName,
@@ -18,7 +21,7 @@ export function ListingsTable(props: ListingsTableProps) {
 					ppu: listing.pricePerUnit,
 					quantity: listing.quantity,
 					total: listing.total,
-					percDiff: <></>,
+					percDiff: `${percDiff > 0 ? "+" + percDiff : percDiff.toString()}%`,
 					retainer: (
 						<span>
 							{listing.retainerName}
@@ -32,7 +35,7 @@ export function ListingsTable(props: ListingsTableProps) {
 					creatorName: listing.creatorName ? listing.creatorName : "?",
 				};
 			}) as TableSchema[],
-		[props.listings],
+		[props.averagePpu, props.listings],
 	);
 
 	const columns = useMemo(
@@ -132,6 +135,16 @@ export function ListingsTable(props: ListingsTableProps) {
 										case 6:
 											cellProps.className = styles.priceTotal;
 											break;
+										case 7:
+											const cellValNumber = parseInt(cell.value.replace(/[^-\d]/, ""));
+											if (cellValNumber > 20) {
+												cellProps.className = styles.priceDiffBad;
+											} else if (cellValNumber < -14) {
+												cellProps.className = styles.priceDiffGood;
+											} else {
+												cellProps.className = styles.priceDiffOk;
+											}
+											break;
 										default:
 											cellProps.className = styles.priceMisc;
 											break;
@@ -150,6 +163,7 @@ export function ListingsTable(props: ListingsTableProps) {
 export interface ListingsTableProps {
 	listings: (MarketBoardItemListing & WorldNamePartial)[];
 	history?: never;
+	averagePpu: number;
 }
 
 interface TableSchema {
@@ -160,7 +174,7 @@ interface TableSchema {
 	ppu: number;
 	quantity: number;
 	total: number;
-	percDiff: JSX.Element;
+	percDiff: string;
 	retainer: JSX.Element;
 	creatorName: string;
 }

@@ -82,10 +82,10 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 	const listingsNq = R.filter(listings, (listing) => !listing.hq);
 	const listingsHq = R.filter(listings, (listing) => listing.hq);
 
-	const avgListingPerUnitNq = avgPpu(listingsNq);
-	const avgListingTotalNq = avgTotal(listingsNq);
-	const avgListingPerUnitHq = avgPpu(listingsHq);
-	const avgListingTotalHq = avgTotal(listingsHq);
+	const avgListingPerUnitNq = avgPpu(listingsNq.slice(0, 10));
+	const avgListingTotalNq = avgTotal(listingsNq.slice(0, 10));
+	const avgListingPerUnitHq = avgPpu(listingsHq.slice(0, 10));
+	const avgListingTotalHq = avgTotal(listingsHq.slice(0, 10));
 
 	const historyEntries = R.pipe(
 		props.marketData,
@@ -102,10 +102,10 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 	const historyEntriesNq = R.filter(historyEntries, (entry) => !entry.hq);
 	const historyEntriesHq = R.filter(historyEntries, (entry) => entry.hq);
 
-	const avgHistoryPerUnitNq = avgPpu(historyEntriesNq);
-	const avgHistoryTotalNq = avgTotal(historyEntriesNq);
-	const avgHistoryPerUnitHq = avgPpu(historyEntriesHq);
-	const avgHistoryTotalHq = avgTotal(historyEntriesHq);
+	const avgHistoryPerUnitNq = avgPpu(historyEntriesNq.slice(0, 10));
+	const avgHistoryTotalNq = avgTotal(historyEntriesNq.slice(0, 10));
+	const avgHistoryPerUnitHq = avgPpu(historyEntriesHq.slice(0, 10));
+	const avgHistoryTotalHq = avgTotal(historyEntriesHq.slice(0, 10));
 
 	return (
 		<div>
@@ -123,19 +123,19 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> HQ Prices (Includes 5%
 						GST)
 					</h6>
-					<ProductTable listings={listingsHq.slice(0, 10)} />
+					<ProductTable listings={listingsHq.slice(0, 10)} averagePpu={avgListingPerUnitHq} />
 					<br />
 					<h6 className={styles.tableTitle}>NQ Prices (Includes 5% GST)</h6>
-					<ProductTable listings={listingsNq.slice(0, 10)} />
+					<ProductTable listings={listingsNq.slice(0, 10)} averagePpu={avgListingPerUnitNq} />
 				</div>
 				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
 					<h6 className={styles.tableTitle}>
 						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> HQ Purchase History
 					</h6>
-					<ProductTable history={historyEntriesHq.slice(0, 10)} />
+					<ProductTable history={historyEntriesHq.slice(0, 10)} averagePpu={avgHistoryPerUnitHq} />
 					<br />
 					<h6 className={styles.tableTitle}>NQ Purchase History</h6>
-					<ProductTable history={historyEntriesNq.slice(0, 10)} />
+					<ProductTable history={historyEntriesNq.slice(0, 10)} averagePpu={avgHistoryPerUnitNq} />
 				</div>
 			</div>
 
@@ -187,12 +187,16 @@ function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
 		}),
 	);
 
+	const avgListingPerUnit = avgPpu(listings);
+
 	const historyEntries = R.pipe(
 		props.marketData,
 		R.map((marketData) => marketData.recentHistory),
 		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardHistoryEntry[]),
 		R.filter((entry) => entry.worldName === props.worldName),
 	);
+
+	const avgHistoryPerUnit = avgPpu(historyEntries);
 
 	return (
 		<div>
@@ -203,10 +207,10 @@ function SingleWorldMarketInfo(props: SingleWorldMarketInfoProps) {
 
 			<div style={{ display: "flex" }}>
 				<div style={{ paddingRight: "10px", flex: "0 1 50%" }}>
-					<ProductTable listings={listings} />
+					<ProductTable listings={listings} averagePpu={avgListingPerUnit} />
 				</div>
 				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
-					<ProductTable history={historyEntries} />
+					<ProductTable history={historyEntries} averagePpu={avgHistoryPerUnit} />
 				</div>
 			</div>
 		</div>
