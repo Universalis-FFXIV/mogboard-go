@@ -21,6 +21,10 @@
 		tr {
 			transition: 100ms;
 
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.4);
+			}
+
 			&:last-of-type {
 				td {
 					border-bottom: none;
