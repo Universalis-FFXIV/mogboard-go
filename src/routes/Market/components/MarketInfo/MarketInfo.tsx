@@ -11,7 +11,7 @@ import {
 import Universalis from "../../../../services/api/universalis/Universalis";
 import { getLang } from "../../../../services/translation";
 import { Cheapest } from "./components/Cheapest";
-import { LastUploadTimes } from "./components/LastUpdateTimes";
+import { LastUploadTimes } from "./components/LastUploadTimes";
 import { ItemContext } from "./contexts/ItemContext";
 import worlds from "../../../../data/DataExports/World.json";
 import { Averages } from "./components/Averages";
@@ -89,8 +89,15 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 
 	const historyEntries = R.pipe(
 		props.marketData,
-		R.map((marketData) => marketData.recentHistory),
+		R.map((marketData) =>
+			R.map(marketData.recentHistory, (entry) =>
+				R.merge(entry, {
+					worldName: worlds.find((world) => world.ID === marketData.worldID)!.Name,
+				}),
+			),
+		),
 		R.reduce((acc, next) => acc.concat(next), [] as MarketBoardHistoryEntry[]),
+		R.sort((a, b) => b.timestamp - a.timestamp),
 	);
 	const historyEntriesNq = R.filter(historyEntries, (entry) => !entry.hq);
 	const historyEntriesHq = R.filter(historyEntries, (entry) => entry.hq);

@@ -1,5 +1,6 @@
 import * as R from "remeda";
 import { findTimeZone, getUTCOffset, listTimeZones } from "timezone-support";
+import { getLocale } from "../services/translation";
 
 export function getTimeZones() {
 	const now = new Date();
@@ -28,6 +29,22 @@ export function getTimeZones() {
 	);
 
 	return timezones;
+}
+
+export function dateTimeToString(dateTime: number): string {
+	const now = new Date();
+	const then = new Date(dateTime);
+	const timeDiff = now.getTime() - dateTime;
+
+	if (timeDiff < 3600000) {
+		const minutes = Math.trunc(timeDiff / 60000);
+		return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+	} else if (timeDiff < 86400000) {
+		const hours = Math.trunc(timeDiff / 3600000);
+		return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+	} else {
+		return then.toLocaleString(getLocale());
+	}
 }
 
 function padWithZeroes(input: number | string, count: number): string {

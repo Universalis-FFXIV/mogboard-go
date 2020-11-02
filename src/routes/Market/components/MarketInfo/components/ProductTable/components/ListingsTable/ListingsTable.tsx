@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useTable } from "react-table";
 import { WorldNamePartial } from "../../../../../../../../models";
 import { MarketBoardItemListing } from "../../../../../../../../services/api/universalis/models";
-import styles from "./ListingsTable.module.scss";
+import styles from "../../ProductTable.module.scss";
 import hqIcon from "../../../../../../../../images/hq.png";
 import { CITY_ICONS } from "../../../../../../../../data/CITY_ICONS";
 
