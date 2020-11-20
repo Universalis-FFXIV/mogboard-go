@@ -5,6 +5,7 @@ import hqIcon from "../../../../../../../../images/hq.png";
 import { dateTimeToString } from "../../../../../../../../util/time";
 import { useSortBy, useTable } from "react-table";
 import { percentDifference } from "../../../../../../../../util/math";
+import { getLang, t } from "../../../../../../../../services/translation";
 
 export function HistoryTable(props: HistoryTableProps) {
 	const data = useMemo(
@@ -31,43 +32,43 @@ export function HistoryTable(props: HistoryTableProps) {
 		() =>
 			[
 				{
-					Header: "#",
+					Header: t("#", "generic_quantity_shorthand"),
 					accessor: "key",
 				},
 				{
-					Header: "Server",
+					Header: t("Server", "generic_server"),
 					accessor: "worldName",
 				},
 				{
-					Header: "HQ",
+					Header: t("HQ", "generic_hq"),
 					accessor: "hq",
 				},
 				{
-					Header: "Price",
+					Header: t("Price", "generic_price"),
 					accessor: "ppu",
 				},
 				{
-					Header: "QTY",
+					Header: t("QTY", "generic_quantity_shorthand"),
 					accessor: "quantity",
 				},
 				{
-					Header: "Total",
+					Header: t("Total", "generic_total"),
 					accessor: "total",
 				},
 				{
-					Header: "%Diff",
+					Header: t("%Diff", "generic_percent_difference_shorthand"),
 					accessor: "percDiff",
 				},
 				{
-					Header: "Buyer",
+					Header: t("Buyer", "generic_buyer"),
 					accessor: "buyerName",
 				},
 				{
-					Header: "Date",
+					Header: t("Date", "generic_date"),
 					accessor: "date",
 				},
 			] as any[],
-		[],
+		[getLang()],
 	);
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(

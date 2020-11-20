@@ -1,7 +1,8 @@
+import printf from "printf";
 import React, { useContext } from "react";
 import { WorldNamePartial } from "../../../../../../models";
 import { MarketBoardItemListing } from "../../../../../../services/api/universalis/models";
-import { getLocale } from "../../../../../../services/translation";
+import { getLocale, t } from "../../../../../../services/translation";
 import { ItemContext } from "../../contexts/ItemContext";
 import styles from "./Cheapest.module.scss";
 
@@ -26,21 +27,21 @@ function Price(props: PriceProps) {
 	if (props.quality === "HQ" && !props.canBeHq) {
 		return (
 			<div>
-				<h2>Cheapest HQ</h2>
-				<p>Item has no HQ variant.</p>
+				<h2>{printf(t("Cheapest %s", "market_board_cheapest_title"), t("HQ", "generic_hq"))}</h2>
+				<p>{printf(t("No %s for sale.", "market_board_none_for_sale"), t("HQ", "generic_hq"))}</p>
 			</div>
 		);
 	} else if (props.listing == null) {
 		return (
 			<div>
-				<h2>Cheapest {props.quality}</h2>
-				<p>No {props.quality} for sale.</p>
+				<h2>{printf(t("Cheapest %s", "market_board_cheapest_title"), t(props.quality, `generic_${props.quality.toLowerCase()}`))}</h2>
+				<p>{printf(t("No %s for sale.", "market_board_none_for_sale"), t(props.quality, `generic_${props.quality.toLowerCase()}`))}</p>
 			</div>
 		);
 	} else {
 		return (
 			<div>
-				<h2>Cheapest {props.quality}</h2>
+				<h2>{printf(t("Cheapest %s", "market_board_cheapest_title"), t(props.quality, `generic_${props.quality.toLowerCase()}`))}</h2>
 				<div className={styles.cheapestPrice}>
 					<i className="xiv-Gil" />
 					&nbsp;
@@ -51,7 +52,7 @@ function Price(props: PriceProps) {
 					</span>
 					&nbsp;
 					<span className={styles.info}>
-						Server: <strong>{props.listing.worldName}</strong> - Total:&nbsp;
+						{t("Server:", "generic_server_colon")} <strong>{props.listing.worldName}</strong> - {t("Total:", "generic_total_colon")}&nbsp;
 						<strong>{props.listing.total.toLocaleString(getLocale())}</strong>
 					</span>
 				</div>

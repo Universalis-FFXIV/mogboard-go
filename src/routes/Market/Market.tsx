@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { SERVERS } from "../../data/SERVERS";
 import { useItemAsync, useSettings, useTitle } from "../../hooks";
+import { getLang } from "../../services/translation";
 import { ItemHeader } from "./components/ItemHeader";
 import { MarketInfo } from "./components/MarketInfo";
 import { ItemContext } from "./components/MarketInfo/contexts/ItemContext";
@@ -11,7 +12,7 @@ export function Market() {
 	const { itemId } = useParams<{ itemId?: string }>();
 	const _itemId = parseInt(itemId || "");
 
-	const [item, itemLoadSpeed] = useItemAsync(_itemId);
+	const [item, itemLoadSpeed] = useItemAsync(_itemId, getLang()!);
 
 	useTitle(item == null ? "Universalis" : `${item.Name} - Universalis`);
 

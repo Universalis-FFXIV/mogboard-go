@@ -9,7 +9,7 @@ import {
 	MarketDataWorld,
 } from "../../../../services/api/universalis/models";
 import Universalis from "../../../../services/api/universalis/Universalis";
-import { getLang } from "../../../../services/translation";
+import { getLang, t } from "../../../../services/translation";
 import { Cheapest } from "./components/Cheapest";
 import { LastUploadTimes } from "./components/LastUploadTimes";
 import { ItemContext } from "./contexts/ItemContext";
@@ -21,6 +21,7 @@ import { avgPpu, avgTotal } from "../../../../util/marketData";
 import { ProductTable } from "./components/ProductTable";
 import styles from "./MarketInfo.module.scss";
 import hqIcon from "../../../../images/hq.png";
+import printf from "printf";
 
 export function MarketInfo(props: MarketInfoProps) {
 	const [settings] = useSettings();
@@ -120,21 +121,21 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 			<div style={{ display: "flex" }}>
 				<div style={{ paddingRight: "10px", flex: "0 1 50%" }}>
 					<h6 className={styles.tableTitle}>
-						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> HQ Prices (Includes 5%
+						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> {printf(t("%s Prices", "generic_prices_2"), t("HQ", "generic_hq"))} (Includes 5%
 						GST)
 					</h6>
 					<ProductTable listings={listingsHq.slice(0, 10)} averagePpu={avgListingPerUnitHq} />
 					<br />
-					<h6 className={styles.tableTitle}>NQ Prices (Includes 5% GST)</h6>
+					<h6 className={styles.tableTitle}>{printf(t("%s Prices", "generic_prices_2"), t("NQ", "generic_nq"))} (Includes 5% GST)</h6>
 					<ProductTable listings={listingsNq.slice(0, 10)} averagePpu={avgListingPerUnitNq} />
 				</div>
 				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
 					<h6 className={styles.tableTitle}>
-						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> HQ Purchase History
+						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> {printf(t("%s Purchase History", "generic_purchase_history"), t("HQ", "generic_hq"))}
 					</h6>
 					<ProductTable history={historyEntriesHq.slice(0, 10)} averagePpu={avgHistoryPerUnitHq} />
 					<br />
-					<h6 className={styles.tableTitle}>NQ Purchase History</h6>
+					<h6 className={styles.tableTitle}>{printf(t("%s Purchase History", "generic_purchase_history"), t("NQ", "generic_nq"))}</h6>
 					<ProductTable history={historyEntriesNq.slice(0, 10)} averagePpu={avgHistoryPerUnitNq} />
 				</div>
 			</div>
