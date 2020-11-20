@@ -121,21 +121,26 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 			<div style={{ display: "flex" }}>
 				<div style={{ paddingRight: "10px", flex: "0 1 50%" }}>
 					<h6 className={styles.tableTitle}>
-						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> {printf(t("%s Prices", "generic_prices_2"), t("HQ", "generic_hq"))} (Includes 5%
-						GST)
+						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" />{" "}
+						{printf(t("%s Prices", "generic_prices_2"), t("HQ", "generic_hq"))} (Includes 5% GST)
 					</h6>
 					<ProductTable listings={listingsHq.slice(0, 10)} averagePpu={avgListingPerUnitHq} />
 					<br />
-					<h6 className={styles.tableTitle}>{printf(t("%s Prices", "generic_prices_2"), t("NQ", "generic_nq"))} (Includes 5% GST)</h6>
+					<h6 className={styles.tableTitle}>
+						{printf(t("%s Prices", "generic_prices_2"), t("NQ", "generic_nq"))} (Includes 5% GST)
+					</h6>
 					<ProductTable listings={listingsNq.slice(0, 10)} averagePpu={avgListingPerUnitNq} />
 				</div>
 				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
 					<h6 className={styles.tableTitle}>
-						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" /> {printf(t("%s Purchase History", "generic_purchase_history"), t("HQ", "generic_hq"))}
+						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" />{" "}
+						{printf(t("%s Purchase History", "generic_purchase_history"), t("HQ", "generic_hq"))}
 					</h6>
 					<ProductTable history={historyEntriesHq.slice(0, 10)} averagePpu={avgHistoryPerUnitHq} />
 					<br />
-					<h6 className={styles.tableTitle}>{printf(t("%s Purchase History", "generic_purchase_history"), t("NQ", "generic_nq"))}</h6>
+					<h6 className={styles.tableTitle}>
+						{printf(t("%s Purchase History", "generic_purchase_history"), t("NQ", "generic_nq"))}
+					</h6>
 					<ProductTable history={historyEntriesNq.slice(0, 10)} averagePpu={avgHistoryPerUnitNq} />
 				</div>
 			</div>

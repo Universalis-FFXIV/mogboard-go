@@ -34,14 +34,29 @@ function Price(props: PriceProps) {
 	} else if (props.listing == null) {
 		return (
 			<div>
-				<h2>{printf(t("Cheapest %s", "market_board_cheapest_title"), t(props.quality, `generic_${props.quality.toLowerCase()}`))}</h2>
-				<p>{printf(t("No %s for sale.", "market_board_none_for_sale"), t(props.quality, `generic_${props.quality.toLowerCase()}`))}</p>
+				<h2>
+					{printf(
+						t("Cheapest %s", "market_board_cheapest_title"),
+						t(props.quality, `generic_${props.quality.toLowerCase()}`),
+					)}
+				</h2>
+				<p>
+					{printf(
+						t("No %s for sale.", "market_board_none_for_sale"),
+						t(props.quality, `generic_${props.quality.toLowerCase()}`),
+					)}
+				</p>
 			</div>
 		);
 	} else {
 		return (
 			<div>
-				<h2>{printf(t("Cheapest %s", "market_board_cheapest_title"), t(props.quality, `generic_${props.quality.toLowerCase()}`))}</h2>
+				<h2>
+					{printf(
+						t("Cheapest %s", "market_board_cheapest_title"),
+						t(props.quality, `generic_${props.quality.toLowerCase()}`),
+					)}
+				</h2>
 				<div className={styles.cheapestPrice}>
 					<i className="xiv-Gil" />
 					&nbsp;
@@ -52,7 +67,8 @@ function Price(props: PriceProps) {
 					</span>
 					&nbsp;
 					<span className={styles.info}>
-						{t("Server:", "generic_server_colon")} <strong>{props.listing.worldName}</strong> - {t("Total:", "generic_total_colon")}&nbsp;
+						{t("Server:", "generic_server_colon")} <strong>{props.listing.worldName}</strong> -{" "}
+						{t("Total:", "generic_total_colon")}&nbsp;
 						<strong>{props.listing.total.toLocaleString(getLocale())}</strong>
 					</span>
 				</div>

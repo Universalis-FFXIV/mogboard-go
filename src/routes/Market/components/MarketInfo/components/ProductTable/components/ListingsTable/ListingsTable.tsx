@@ -83,6 +83,7 @@ export function ListingsTable(props: ListingsTableProps) {
 					accessor: "creatorName",
 				},
 			] as any[],
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[getLang()],
 	);
 

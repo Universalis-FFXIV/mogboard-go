@@ -68,6 +68,7 @@ export function HistoryTable(props: HistoryTableProps) {
 					accessor: "date",
 				},
 			] as any[],
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[getLang()],
 	);
 
