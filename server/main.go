@@ -20,6 +20,9 @@ func main() {
 			log.Println(err)
 		}
 
+		c.Header("Location", "/")
+		c.Status(http.StatusTemporaryRedirect)
+
 		log.Println(user.Name)
 	})
 	r.GET("/logout/discord", func(c *gin.Context) {
