@@ -32,6 +32,10 @@
 			}
 		}
 
+		tr:first-of-type:hover {
+			background-color: $table-color;
+		}
+
 		th {
 			font-size: 13px;
 			font-weight: 600;
