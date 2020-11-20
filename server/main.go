@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -11,7 +13,10 @@ import (
 )
 
 func main() {
-	goth.UseProviders(auth.GetDiscordAuth("http://localhost:5336/auth/discord"))
+	port := flag.String("p", "5336", "The port that the application will run on.")
+	flag.Parse()
+
+	goth.UseProviders(auth.GetDiscordAuth(fmt.Sprintf("http://localhost:%s/auth/discord", *port)))
 
 	r := gin.Default()
 	r.GET("/auth/discord", func(c *gin.Context) {
@@ -32,5 +37,6 @@ func main() {
 
 		log.Println("Logged out")
 	})
-	r.Run(":5336")
+
+	r.Run(fmt.Sprintf(":%s", *port))
 }
