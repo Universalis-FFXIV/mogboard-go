@@ -124,24 +124,42 @@ function CrossWorldMarketInfo(props: CrossWorldMarketInfoProps) {
 						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" />{" "}
 						{printf(t("%s Prices", "generic_prices_2"), t("HQ", "generic_hq"))} (Includes 5% GST)
 					</h6>
-					<ProductTable listings={listingsHq.slice(0, 10)} averagePpu={avgListingPerUnitHq} />
+					<ProductTable
+						listings={listingsHq.slice(0, Math.max(Math.floor(listingsHq.length * 0.05), 10))}
+						averagePpu={avgListingPerUnitHq}
+					/>
 					<br />
 					<h6 className={styles.tableTitle}>
 						{printf(t("%s Prices", "generic_prices_2"), t("NQ", "generic_nq"))} (Includes 5% GST)
 					</h6>
-					<ProductTable listings={listingsNq.slice(0, 10)} averagePpu={avgListingPerUnitNq} />
+					<ProductTable
+						listings={listingsNq.slice(0, Math.max(Math.floor(listingsNq.length * 0.05), 10))}
+						averagePpu={avgListingPerUnitNq}
+					/>
 				</div>
 				<div style={{ paddingLeft: "10px", flex: "0 1 50%" }}>
 					<h6 className={styles.tableTitle}>
 						<img src={hqIcon} alt="" className={styles.hqIcon} height="15" />{" "}
 						{printf(t("%s Purchase History", "generic_purchase_history"), t("HQ", "generic_hq"))}
 					</h6>
-					<ProductTable history={historyEntriesHq.slice(0, 10)} averagePpu={avgHistoryPerUnitHq} />
+					<ProductTable
+						history={historyEntriesHq.slice(
+							0,
+							Math.max(Math.floor(historyEntriesHq.length * 0.05), 10),
+						)}
+						averagePpu={avgHistoryPerUnitHq}
+					/>
 					<br />
 					<h6 className={styles.tableTitle}>
 						{printf(t("%s Purchase History", "generic_purchase_history"), t("NQ", "generic_nq"))}
 					</h6>
-					<ProductTable history={historyEntriesNq.slice(0, 10)} averagePpu={avgHistoryPerUnitNq} />
+					<ProductTable
+						history={historyEntriesNq.slice(
+							0,
+							Math.max(Math.floor(historyEntriesNq.length * 0.05), 10),
+						)}
+						averagePpu={avgHistoryPerUnitNq}
+					/>
 				</div>
 			</div>
 
