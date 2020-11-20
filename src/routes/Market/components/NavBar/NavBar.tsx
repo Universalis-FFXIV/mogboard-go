@@ -1,6 +1,7 @@
 import React from "react";
 import { SERVERS } from "../../../../data/SERVERS";
 import { useSettings } from "../../../../hooks";
+import AuthClient from "../../../../services/auth/AuthClient";
 import { getLang, t } from "../../../../services/translation";
 import styles from "./NavBar.module.scss";
 
@@ -37,11 +38,17 @@ export function NavBar(props: NavBarProps) {
 					</button>
 				))}
 			</div>
-			<div className={styles.custom}>
-				<button type="button">
-					<i className="xiv-app_drawer_news"></i> {t("Alerts", "generic_alerts")}
-				</button>
-			</div>
+			{(() => {
+				if (AuthClient.isLoggedIn) {
+					return (
+						<div className={styles.custom}>
+							<button type="button">
+								<i className="xiv-app_drawer_news"></i> {t("Alerts", "generic_alerts")}
+							</button>
+						</div>
+					)
+				}
+			})()}
 		</div>
 	);
 }
